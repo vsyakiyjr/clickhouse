@@ -1,0 +1,257 @@
+.product-page {
+
+	padding: 50px 100px;
+
+	.product_img_carousel .owl-nav .nav-icon {
+		font-size: 25px;
+	}
+
+	.product-page-parts {
+
+		display: flex;
+
+		justify-content: space-between;
+
+
+		.images,
+		.description {
+			background: #FFFFFF;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+		}
+
+		.images {
+			width: 50%;
+			min-width: 50%;
+			max-width: 50%;
+			margin-right: 10px;
+			flex: 1;
+			padding: 30px;
+
+			.owl-carousel .owl-item img {
+				margin: auto;
+			}
+
+			.product_img_carousel .owl-nav .owl-prev {
+				left: 0;
+			}
+
+			.product_img_carousel .owl-nav .owl-next {
+				right: 0;
+				width: 30px;
+			}
+		}
+
+		.description {
+			padding: 30px;
+			flex: 1;
+			font-size: 12px;
+
+			.product-name {
+				font-size: 24px;
+
+				.product-type {
+					font-size: 18px;
+					margin: 20px 0;
+				}
+
+				margin-bottom: 10px;
+			}
+
+			.mobile-accordion {
+				display: none;
+			}
+
+			.product-desc {
+				font-size: 14px;
+
+				.line {
+					margin: 20px 0;
+
+					.line-label {
+						font-weight: 600;
+					}
+
+					.line-value {
+						margin-left: 30px;
+					}
+
+					&.qty {
+						.fa {
+							cursor: pointer;
+							color: $text-grey;
+						}
+
+						input {
+							width: 40px;
+							font-size: 18px;
+							text-align: center;
+							border: none;
+						}
+					}
+
+					&.combinations {
+						position: relative;
+
+						.attribute {
+							display: flex;
+							align-items: center;
+
+							.line-label {
+								position: absolute;
+								color: $text-grey;
+								font-weight: 500;
+								left: 10px;
+								font-size: 10px;
+							}
+						}
+
+						select {
+							-webkit-appearance: none;
+							-moz-appearance: none;
+							appearance: none;
+							background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='grey'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat;
+							background-size: 12px;
+							background-position: calc(100% - 20px) 14px;
+							background-repeat: no-repeat;
+							padding: 0.8rem 0.75rem 0.8rem 60px;
+							border-radius: 6px;
+							height: auto;
+							border: 1px solid $light-grey;
+							background-color: white;
+						}
+					}
+
+					&.price-raw {
+						font-size: 18px;
+						font-weight: 600;
+					}
+
+					&.order {
+						margin-top: 40px;
+
+						.add-to-cart {
+							border-radius: 5px;
+							font-size: 18px;
+							color: white;
+							box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+							background: $bg-orange;
+
+							&:hover {
+								background: darken($bg-orange, 10%);
+							}
+
+							border: none;
+							padding: 13px 80px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.additional-header {
+		font-size: 24px;
+		margin: 40px 0 20px;
+		color: $text-grey;
+	}
+
+	.additional-products {
+		display: flex;
+		flex-flow: row;
+		flex-wrap: wrap;
+
+		.product-card {
+			width: 170px;
+
+			&:not(:last-child){
+				margin-right: 20px;
+			}
+
+			margin-bottom: 20px;
+		}
+	}
+}
+
+@media all and (max-width: $screen-md) {
+	.product-page {
+		.mobile-search {
+			display: block;
+		}
+
+		padding: 10px;
+
+		.breadcrumbs {
+			margin: 10px 0;
+
+			.item {
+				font-size: 12px;
+			}
+		}
+
+		.product-page-parts {
+			flex-flow: column;
+
+			.images {
+				width: 100%;
+				min-width: 100%;
+				max-width: 100%;
+				padding: 10px;
+				margin-bottom: 10px;
+			}
+
+			.description {
+				padding: 10px;
+
+				.more_info_btn {
+					display: none;
+				}
+
+				.line {
+					&.order{
+						text-align: center;
+					}
+				}
+
+				.mobile-accordion {
+					display: block;
+
+					.card-header {
+						background: white;
+
+						.btn.btn-link {
+							color: $body-black;
+						}
+
+					}
+
+					.collapse.show.in ~ .card-header {
+						background: $light-grey;
+					}
+				}
+			}
+
+			.attribute-tabs {
+				display: none;
+			}
+
+
+		}
+
+		.additional-header {
+			text-align: center;
+		}
+
+		.additional-products {
+			justify-content: space-around;
+
+			.product-card {
+				&,
+				&:not(:last-child){
+					margin-right: 0;
+				}
+
+			}
+
+		}
+	}
+}

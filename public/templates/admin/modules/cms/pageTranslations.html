@@ -1,0 +1,11 @@
+<div class="page-translations">
+	<div class="btn-group" role="group" aria-label="...">
+		<button type="button" class="btn btn-default"
+				ng-repeat="translation in translations track by translation.locale" title="{{ translation.name }}"
+				ng-click="openTranslation(translation)"
+		>
+			<span class="flag flag-{{ translation.flag }}"></span>
+			{{ translation.name }}
+		</button>
+	</div>
+</div>

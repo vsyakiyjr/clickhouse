@@ -1,0 +1,95 @@
+.navigate {
+  &-size {
+    height: 60px;
+  }
+  &Item {
+    &-size {
+      @extend .pr-3;
+      @extend .pl-3;
+
+    }
+  }
+}
+
+.sidebar {
+  &-size {
+    width: 130px;
+  }
+}
+
+.footer {
+  &-border {
+    border-top: 2px solid theme-color("dark");
+  }
+}
+
+.cart-badge {
+  background-color: red;
+  color: white;
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  line-height: 1.2rem;
+  text-indent: 0.35rem;
+}
+
+.search {
+  &Suggestions {
+    top: 58px;
+    width: 100%;
+    min-height: 100px;
+    overflow-y: hidden;
+    // background-color: #fff;
+    z-index: 999;
+  }
+  &Icon {
+    /* top: 13px;
+     right: 2rem;
+     z-index: 9999;*/
+  }
+  &Row {
+    background-color: #fff;
+    height: 33px;
+    // border-bottom: 3px solid theme-color("info");
+  }
+  &Row:nth-of-type(2) {
+    background-color: theme-color("secondary");
+  }
+  &Inner {
+  }
+  &Input {
+    width: 380px;
+    height: 40px;
+    border-radius: 25px;
+    border: 0px;
+    text-indent: 2rem;
+  }
+  &Img {
+    height: 25px;
+  }
+}
+
+.showcase {
+  &Nav{
+    width: 30px;
+    height: 30px;
+    top:40%;
+    z-index: 999;
+    &-prev{
+      left: 0px;
+    }
+    &-next{
+      right: 0px;
+    }
+  }
+  &-carousel {
+    .owl-nav {
+      display: none;
+    }
+    .owl-item{
+      height: 220px;
+    }
+  }
+}

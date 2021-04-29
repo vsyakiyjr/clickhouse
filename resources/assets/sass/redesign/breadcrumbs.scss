@@ -1,0 +1,15 @@
+.breadcrumbs {
+	display: flex;
+	align-items: center;
+	color: $text-grey;
+
+	.item {
+		display: inline-block;
+		margin: 0 5px;
+		color: $text-grey;
+
+		font-size: 18px;
+	}
+
+	margin: 15px 0;
+}

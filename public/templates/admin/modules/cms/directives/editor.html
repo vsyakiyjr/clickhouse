@@ -1,0 +1,69 @@
+<div id="cms-editor">
+	<div class="left-page-container">
+		<div class="form-group-sm" ng-init="">
+			<h3 class="btn btn-link"
+			    ng-class="activeTabClass('structure')"
+			    ng-click="setActiveTab('structure')">
+				Структура
+			</h3>
+			<h3 class="btn btn-link"
+			    ng-class="activeTabClass('search')"
+			    ng-click="setActiveTab('search')">
+				Поиск
+			</h3>
+
+			<select name="hosts"
+					class="form-control pull-right hosts-selector"
+					id="hosts"
+					ng-change="refreshTree()"
+					ng-model="host"
+					ng-options="host for host in hosts">
+			</select>
+
+		</div>
+		<h4 ng-show="loading">Загрузка страниц..</h4>
+		<div class="folder-container tree"
+		     style="overflow: hidden"
+		     ng-show="activeWrap == 'structure'"
+			 host="host"
+		     site-tree="tree">
+		</div>
+		<div class="folder-container search"
+		     ng-show="activeWrap == 'search'">
+
+			<form class="form-inline cms-search-form" name="pageSearch" ng-submit="searchWithinTree(searchQuery)">
+				<div class="form-group">
+					<input class="form-control cms-search"
+					       id="cms-search"
+					       type="text"
+					       required
+					       ng-model="searchQuery"
+					       ng-disabled="searchIsActive"
+					       placeholder="Введите часть названия или содержимого страницы"
+					/>
+				</div>
+				<button type="submit" class="btn btn-success" ng-disabled="pageSearch.$invalid || searchIsActive">Поиск</button>
+			</form>
+			<h4 ng-show="searchIsActive">Поиск страниц... <span class="fa fa-spinner fa-gears"></span></h4>
+
+			<div class="cms-search-result-container">
+				<div class="cms-search-result directories">
+					<div class="folder-container tree"
+					     ng-repeat="tree in searchResults.directories"
+						 host="host"
+					     site-tree="tree">
+					</div>
+				</div>
+				<div class="cms-search-result pages">
+					<page-in-directory ng-repeat="page in searchResults.pages"
+					                   page="page">
+					</page-in-directory>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="page-container"
+	     ng-cloak=""
+	     ng-include="'/templates/admin/modules/cms/page.html'"
+	     ng-if="page.alias"></div>
+</div>

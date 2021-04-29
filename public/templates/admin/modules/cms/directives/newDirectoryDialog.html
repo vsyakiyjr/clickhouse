@@ -1,0 +1,63 @@
+<form name="directoryForm"
+      ng-submit="directoryForm.$valid && save(directory)">
+	<input type="hidden" ng-model="directory.fullpath" required />
+	<div class="modal-header">
+		<h4>{{titleText}} {{path}}</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group" ng-class="{'has-error': directoryForm.alias.$invalid}">
+			<label class="control-label" for="newDirAlias">Алиас</label>
+			<input type="text"
+			       id="newDirAlias"
+			       name="alias"
+			       class="form-control"
+			       placeholder="Alias"
+			       required
+			       ng-model="alias"
+			       ng-pattern="/^[0-9a-z_-]+$/i"
+			       ng-blur="checkAliasOnBlur(directoryForm.alias, directory)"
+			       ng-change="transliterate(directory, 'alias')"/>
+			<span ng-show="directory.alias.length > 0"
+			      ng-click="directory.alias = ''"
+			      class="glyphicon glyphicon-remove form-control-feedback folder-clear"></span>
+		</div>
+		<div class="form-group" ng-class="{'has-error': directoryForm.description.$invalid}">
+			<label class="control-label" for="newDirDescription">Описание</label>
+			<textarea class="form-control"
+			          id="newDirDescription"
+			          name="description"
+			          required
+			          placeholder="Decription"
+			          ng-model="directory.description"></textarea>
+			<span ng-show="directory.description.length > 0"
+			      ng-click="directory.description = ''"
+			      class="glyphicon glyphicon-remove form-control-feedback folder-clear"></span>
+		</div>
+		<div class="form-group" ng-class="{'has-error': directoryForm.description_uk.$invalid}">
+			<label class="control-label" for="newDirDescriptionUk">Описание (українською)</label>
+			<textarea class="form-control"
+			          id="newDirDescriptionUk"
+			          name="description_uk"
+			          placeholder="Decription"
+			          ng-model="directory.description_uk"></textarea>
+			<span ng-show="directory.description_uk.length > 0"
+			      ng-click="directory.description_uk = ''"
+			      class="glyphicon glyphicon-remove form-control-feedback folder-clear"></span>
+		</div>
+		<div class="form-group" ng-class="{'has-error': directoryForm.description_en.$invalid}">
+			<label class="control-label" for="newDirDescriptionEn">Описание (english)</label>
+			<textarea class="form-control"
+			          id="newDirDescriptionEn"
+			          name="description_en"
+			          placeholder="Decription"
+			          ng-model="directory.description_en"></textarea>
+			<span ng-show="directory.description_en.length > 0"
+			      ng-click="directory.description_en = ''"
+			      class="glyphicon glyphicon-remove form-control-feedback folder-clear"></span>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" type="submit" ng-disabled="directoryForm.$invalid">{{buttonText}}</button>
+		<span class="btn btn-default" ng-click="cancel(modalInstance)">Закрыть</span>
+	</div>
+</form>

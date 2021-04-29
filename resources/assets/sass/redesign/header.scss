@@ -1,0 +1,241 @@
+.header {
+	background: white;
+	position: fixed;
+	top: 35px;
+	width: 100%;
+	z-index: 3;
+
+	> .navbar {
+		display: flex;
+
+		flex-flow: row;
+		justify-content: space-between;
+		padding: 0 1.5rem;
+
+		.logo {
+			width: 90px;
+
+			img {
+				width: 100%;
+			}
+		}
+
+		.menu {
+			> li {
+				padding: 10px;
+				display: flex;
+				align-items: center;
+
+				&:hover,
+				&.active {
+					//background: $header-menu-bg;
+				}
+
+				> a {
+					color: $body-black;
+
+					&.cart-icon {
+						position: relative;
+
+						.cart-count {
+							position: relative;
+							top: -5px;
+							border-radius: 4px;
+							font-weight: 400;
+							font-size: 9px;
+							padding: 0.1rem 0.4rem;
+						}
+					}
+
+					&.inst-link {
+						img {
+							width: 25px;
+							height: 25px;
+						}
+					}
+				}
+
+				.sidebarMenu .items {
+					overscroll-behavior: none;
+				}
+
+				&.catalog {
+					position: relative;
+
+					.sidebarMenu {
+						z-index: 31;
+						position: absolute;
+						display: none;
+						background: $header-menu-bg;
+						// позициониронивае по центру опции "Каталог" + высота стрелки
+						top: 50px;
+						left: -260px;
+
+						//padding: 20px;
+
+						> .items {
+							width: 590px;
+							height: auto;
+							overflow-y: scroll;
+							overflow-x: auto;
+						}
+/*
+						!*стрелка у меню каталога*!
+						&:after,
+						&:before {
+							bottom: 100%;
+							left: 50%;
+							border: solid transparent;
+							content: " ";
+							height: 0;
+							width: 0;
+							position: absolute;
+							pointer-events: none;
+						}
+
+						&:after {
+							border-color: rgba(136, 183, 213, 0);
+							border-bottom-color: $header-menu-bg;
+							border-width: 20px;
+							margin-left: -20px;
+						}
+						&:before {
+							border-color: rgba(194, 225, 245, 0);
+							border-bottom-color: $header-menu-bg;
+							border-width: 21px;
+							margin-left: -21px;
+						}*/
+
+						//.arrow {
+						//	width: 0;
+						//	height: 0;
+						//	border-style: solid;
+						//	border-width: 0 5px 15px;
+						//	border-color: transparent transparent $header-menu-bg transparent;
+						//	position: absolute;
+						//	top: -15px;
+						//	left: calc(50% - 15px);
+						//}
+					}
+
+					.sidebarMenu {
+						.sidebarItem {
+							height: auto;
+							flex-wrap: nowrap;
+							justify-content: flex-start;
+							width: 50%;
+							border: none;
+							position: static;
+							margin-right: 1px;
+							z-index: 2;
+							overscroll-behavior: none;
+
+							.subcategories {
+								overscroll-behavior: none;
+
+								.selected-catalog-item {
+									display: none;
+								}
+
+								.all-items {
+									display: none;
+								}
+
+								$extraSpacer: 10px;
+								border-left: 1px solid rgba(130, 130, 130, 0.1);
+
+								width: calc(50% + 5px); // scroll spaces
+								left: calc(50% - 8px);
+								right: 0;
+								height: 100%;
+								overflow-y: scroll;
+								top: 0;
+								padding: 0;
+								background: $header-menu-bg;
+								border-right: none;
+								border-bottom: none;
+								border-top: none;
+							}
+
+							.sidebarItem__img {
+								padding: 6px;
+								width: auto;
+								height: auto;
+								margin-bottom: 0;
+
+								img {
+									width: 18px;
+									height: 18px;
+								}
+							}
+
+							&:hover {
+								//border-right: 1px solid rgba(225, 177, 44, 0);
+								//background: #FDFBF4;
+
+								background: rgba(130, 130, 130, 0.1);
+
+								.subcategories {
+									display: block;
+
+									a {
+										height: 30px;
+										display: flex;
+										align-items: center;
+										line-height: 1.2;
+										padding-left: 20px;
+
+										&:hover {
+											background: rgba(130, 130, 130, 0.1);
+										}
+									}
+								}
+							}
+
+							.sidebarItem__text {
+								width: 100%;
+								height: 30px;
+								padding-left: 20px;
+								display: flex;
+								align-items: center;
+
+
+							}
+						}
+					}
+
+					&:not(.header-catalog){
+
+
+
+						&.active,
+						&:hover {
+							.sidebarItem__text {
+								background: rgba(130, 130, 130, 0.1);
+							}
+
+							.sidebarMenu {
+								display: block;
+							}
+						}
+					}
+
+					.sidebarMenu.active{
+						display: block;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* MOBILE */
+@media all and(max-width: $screen-md) {
+	.header {
+		position: static;
+
+		.navbar {
+			display: none;
+		}
+	}
+}

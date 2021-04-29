@@ -1,0 +1,32 @@
+<form name="directoryForm"
+      ng-submit="directoryForm.$valid && ok()">
+	<input type="hidden" ng-model="directory.fullpath" required />
+	<div class="modal-header">
+		<h4>Поиск директории</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+			<label class="control-label" for="directorySearchQuery">Введите часть  адреса или описания директории</label>
+			<input type="text"
+			       id="directorySearchQuery"
+			       name="alias"
+			       autocomplete="off"
+			       class="form-control"
+			       placeholder="Поиск директории"
+			       required
+			       ng-model="directory.fullpath"
+			       uib-typeahead="(directory.fullpath + ' (' + directory.description + ')')  for directory in autocomplete($viewValue)"
+			       typeahead-min-length="3"
+			       typeahead-wait-ms="500"
+			       typeahead-on-select="selectDirectory($item)"
+			/>
+			<span ng-show="directory.id > 0"
+			      ng-click="directory = undefined"
+			      class="glyphicon glyphicon-remove form-control-feedback folder-clear"></span>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" type="submit" ng-disabled="!directory.id">Ок</button>
+		<span class="btn btn-default" ng-click="cancel(modalInstance)">Закрыть</span>
+	</div>
+</form>

@@ -1,0 +1,7 @@
+<ul class="ui-breadcrumbs">
+	<li ng-repeat="breadcrumb in breadcrumbs" class="breadcrumb-{{breadcrumb.state}}">
+		<a href="" ng-if="isActive(breadcrumb)" ng-click="goToState(breadcrumb)">{{breadcrumb.name}}</a>
+		<span ng-if="!isActive(breadcrumb)">{{breadcrumb.name}}</span>
+		<a href="" ng-if="!isActive(breadcrumb)" ng-click="goToState(breadcrumb)">*</a>
+	</li>
+</ul>

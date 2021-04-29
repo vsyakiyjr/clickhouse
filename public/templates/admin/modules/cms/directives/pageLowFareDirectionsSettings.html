@@ -1,0 +1,154 @@
+<form name="pageLowFareDirectionsSettings" class="page-settings">
+	<h4>Настройки</h4>
+	<div class="form-group">
+		<label class="control-label" for="pageEnabled">Предложение активно</label>
+		<input type="checkbox"
+		       id="pageEnabled"
+		       ng-readonly="editMode == 'history'"
+		       name="enabled"
+		       ng-model="page.low_fare_directions.enabled"
+		       style="visibility: hidden; position: absolute;"
+		       ng-checked="page.low_fare_directions.enabled | boolean" />
+		<span class="btn btn-sm"
+		      ng-click="page.low_fare_directions.enabled = !(page.low_fare_directions.enabled | boolean)"
+		      ng-class="(page.low_fare_directions.enabled | boolean) ? 'btn-success' : 'btn-danger'">
+			<span class="fa" ng-class="(page.low_fare_directions.enabled | boolean) ? 'fa-toggle-on' : 'fa-toggle-off'"></span>
+		</span>
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageLowFareDirectionsSettings.airportFrom.$invalid}">
+		<label class="control-label" for="airportFrom">Откуда (аэропорт)</label>
+		<input type="text"
+		       id="airportFrom"
+		       class="form-control with-icon with-btn"
+		       name="airportFrom"
+		       model-iata="page.low_fare_directions.airport_from"
+		       model-object="page.low_fare_directions.from"
+			   with-full-info="true"
+		       placeholder="Город или аэропорт вылета"
+		       av-autocomplete-airport=""
+		>
+
+		<button type="button"
+		        class="btn btn-sm btn-default edit-cases"
+		        uib-tooltip="Редактировать падежи"
+		        tooltip-append-to-body="true"
+		        tooltip-placement="left"
+		        tooltip-popup-delay="300"
+		        ng-click="editCases(page.low_fare_directions.from)">
+			<span class="glyphicon glyphicon-pencil"></span>
+		</button>
+
+		<div class="alert alert-danger"
+		     role="alert"
+		     ng-if="page.low_fare_directions.from && !hasFullFilledNameCases(page.low_fare_directions.from)"
+		>
+			<strong>
+				Не заполнены падежи для аэропорта!
+			</strong>
+
+			<span class="edit-cases-link" ng-click="editCases(page.low_fare_directions.from)">Редактировать</span>
+		</div>
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageLowFareDirectionsSettings.airportTo.$invalid}">
+		<label class="control-label" for="airportTo">Куда (аэропорт)</label>
+		<input type="text"
+		       id="airportTo"
+		       class="form-control with-icon with-btn"
+		       name="airportTo"
+		       model-iata="page.low_fare_directions.airport_to"
+		       model-object="page.low_fare_directions.to"
+			   with-full-info="true"
+		       placeholder="Город или аэропорт вылета"
+		       av-autocomplete-airport=""
+		/>
+		<button type="button"
+		        class="btn btn-sm btn-default edit-cases"
+		        uib-tooltip="Редактировать падежи"
+		        tooltip-append-to-body="true"
+		        tooltip-placement="left"
+		        tooltip-popup-delay="300"
+		        ng-click="editCases(page.low_fare_directions.to)">
+			<span class="glyphicon glyphicon-pencil"></span>
+		</button>
+		<div class="alert alert-danger"
+		     role="alert"
+		     ng-if="page.low_fare_directions.to && !hasFullFilledNameCases(page.low_fare_directions.to)"
+		>
+			<strong>
+				Не заполнены падежи для аэропорта!
+			</strong>
+
+			<span class="edit-cases-link" ng-click="editCases(page.low_fare_directions.to)">Редактировать</span>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label" for="pageLowFareOffer">Картинка для формы (1427х461)</label>
+		<img ng-src="{{page.low_fare_directions.form_background_image_path}}"
+		     ng-hide="page.low_fare_directions.form_background_image == 'remove'"
+		     ng-show="page.low_fare_directions.form_background_image_path"
+		     alt="Картинка к странице"
+		     width="400"/>
+		<input type="file"
+		       ng-readonly="editMode == 'history'"
+		       name="image"
+		       id="pageLowFareOffer"
+		       fileread="page.low_fare_directions.image"
+		       accept="image/*" />
+		<span class="btn btn-default"
+		      uib-tooltip="Убрать картинку"
+		      ng-disabled="!page.low_fare_directions.form_background_image_path || page.low_fare_directions.form_background_image == 'remove'"
+		      ng-click="page.low_fare_directions.image = 'remove' ">
+			<span class="glyphicon glyphicon-remove"></span> Убрать картинку
+		</span>
+	</div>
+
+	<div class="form-group airports-list">
+		<label for="airportsList"
+		       class="control-label">Аэропорты</label>
+		<input type="text"
+		       id="airportsList"
+		       class="form-control with-icon with-btn"
+		       name="airportsList"
+		       select-callback-func="addAirport"
+		       placeholder="Город или аэропорт вылета"
+		       av-autocomplete-airport=""
+		/>
+		<div class="badges-list">
+			<span class="alert alert-success" ng-repeat="airport in page.low_fare_directions.details.airports">
+				{{airport.iata}}
+				<i class="fa fa-times" ng-click="removeAirport($index)"></i>
+			</span>
+		</div>
+	</div>
+
+	<div class="form-group airports-list">
+		<label for="aircompany"
+		       class="control-label">Приоритетная авиакомпания</label>
+		<input type="text"
+		       style="width: 74%"
+		       id="aircompany"
+		       name="aircompany"
+		       autocomplete="off"
+		       class="form-control"
+		       placeholder="Поиск авиакомпании"
+		       ng-model="page.low_fare_directions.details.aircompany.name"
+		       uib-typeahead="aircompany as (aircompany.iata + ' - ' + aircompany.name) for aircompany in aircompaniesAutocomplete($viewValue)"
+		       typeahead-min-length="2"
+		       typeahead-wait-ms="500"
+		       typeahead-on-select="addAircompany($item)"
+		       required
+		/>
+
+		<button class="btn btn-default"
+		        type="button">
+			<span class="glyphicon glyphicon-remove"
+			      uib-tooltip="Убрать приоритную авиакомпанию"
+			      tooltip-placement="left"
+			      ng-click="removeAircompany(aircompany)">
+			</span>
+		</button>
+
+	</div>
+
+</form>

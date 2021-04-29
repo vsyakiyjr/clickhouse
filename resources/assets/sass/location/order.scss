@@ -1,0 +1,14 @@
+.order {
+  &Img {
+    height: 125px;
+    width: 125px;
+  }
+
+}
+.quantity{
+  &Input{
+    height: 25px;
+    width: 25px;
+    display: block;
+  }
+}

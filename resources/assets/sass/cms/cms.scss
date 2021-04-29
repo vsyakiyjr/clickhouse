@@ -1,0 +1,773 @@
+@import "bootstrap3/boostrap";
+@import "../redesign/colors";
+
+/*CMS START*/
+$fontSize: 14px;
+
+html.cms_editor {
+	height: 95%;
+	body {
+		height: 100%;
+		padding-top: 0;
+	}
+
+	.navbar {
+		margin-bottom: 0;
+	}
+	h2 {
+		margin-top: 0;
+		font-size: 24px;
+	}
+
+	label{
+		margin: 0;
+	}
+
+	.page-container {
+		padding-bottom: 200px;
+	}
+}
+
+.left-page-container{
+	background-color: #eee;
+	border: 1px solid #ddd;
+	width: 34%;
+	//padding-right: 10px;
+	display: inline-block;
+
+	&.resizable {
+		flex: 0 0 30%;
+	}
+
+	h3.btn-link{
+		font-size: 16px;
+
+		&.active {
+			font-weight: bold;
+		}
+	}
+
+	.hosts-selector {
+		max-width: 200px;
+		//margin-top: 10px;
+	}
+
+	.folder-created_at {
+		font-size: 0.8em;
+	}
+}
+
+.toolbar{
+	margin-bottom: 20px;
+
+	.toolbar-item {
+		display: inline-block;
+		vertical-align: baseline;
+	}
+}
+
+.cms-search-form {
+	.cms-search {
+		width: 395px;
+		margin-left: 10px;
+	}
+}
+
+.cms-search-result {
+	margin-top: 10px;
+	&.pages {
+		padding-left: 10px;
+	}
+}
+
+.page-container{
+	width: 64%;
+	padding-left: 10px;
+	display: inline-block;
+	border-left: 1px solid #ccc;
+}
+
+.left-page-container h3,
+.page-container h3 {
+	margin-top: 0;
+}
+
+.left-page-container,
+.page-container {
+	position: fixed;
+	top: 90px;
+	bottom: 0;
+	overflow: scroll;
+}
+
+.page-container {
+	right: 1%;
+}
+.left-page-container {
+	left: 1%;
+}
+
+.editor-wrap {
+	position: relative;
+	//padding-top: 40px;
+}
+
+.current-page-title {
+	position: absolute;
+	left: 140px;
+	top: 0;
+}
+
+/*
+ Tree structure using CSS:
+ http://stackoverflow.com/questions/14922247/how-to-get-a-tree-in-html-using-pure-css
+*/
+.tree,
+.tree .folder-container{
+	position: relative;
+	.bold {
+		font-weight: bold;
+	}
+}
+
+.tree{
+	.folder-item{
+		margin: 0;
+		padding-left: 12px;
+		position: relative;
+
+		&.hide-add {
+			.folder-addObject-container {
+				display: none;
+			}
+		}
+
+		&::before,
+		&::after{
+			content: '';
+			position: absolute;
+			left: 0;
+		}
+
+		&::before{
+			border-top: 1px solid #999;
+			top: 10px;
+			width: 10px;
+			height: 0;
+		}
+
+		&::after{
+			border-left: 1px solid #999;
+			height: 150%;
+			width: 0px;
+			top: -10px;
+		}
+
+		&.nested-pages {
+			margin-left: 5px;
+
+			&::after {
+				height: 100%;
+				top: -4px;
+			}
+		}
+	}
+
+
+
+	.folder-item.folder-page:last-child::after{
+		height: 21px;
+	}
+
+	& > .folder-item::before{
+		border-top: none;
+	}
+
+	& > .folder-item:last-child::after{
+		display: none;
+	}
+}
+.folder-label{
+	padding-right: 10px;
+
+	//display: inline-block;
+	border-bottom: 1px solid transparent;
+
+	&.active{
+		box-shadow: 0 0 10px 3px green;
+	}
+
+	.glyphicon-folder-open,
+	.glyphicon-folder-close {
+		color: #bd9662;
+	}
+
+	.glyphicon-file{
+		//color: #008000;
+	}
+
+	&:hover {
+		cursor: pointer;
+		border-bottom: 1px solid #ccc;
+
+		.folder-editPage{
+			opacity: 1;
+		}
+	}
+}
+.folder-editPage{
+	transition: all 0.4s ease;
+	opacity: 0;
+}
+.folder-alias{
+	font-size: 80%;
+	font-style: italic;
+	color: #aaa;
+}
+.folder .popover{
+	display: block;
+	left: 54px;
+	top: -100px;
+	min-width: 30em;
+	z-index: 10;
+}
+.folder-pages-container .popover{
+	top: -125px;
+}
+.folder-addObject-container{
+	position: relative;
+}
+.folder-clear{
+	transition: all 0.4s ease;
+	bottom: 0;
+	top: auto;
+	opacity: 1;
+	pointer-events: auto;
+
+	&.ng-hide{
+		opacity: 0;
+	}
+
+	&:hover{
+		cursor: pointer;
+		text-shadow: 0 0 3px 5px rgba(100, 100, 100, 0.4);
+	}
+}
+.folder-buttons{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+.page-settings-columns{
+	position: relative;
+}
+.page-settings-columns li{
+	min-width: 0;
+}
+.cms-page-gallery{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+h1.cms-page-title{
+	font-size: 20px;
+	color: #0060AF;
+	font-weight: normal;
+	border-bottom: solid 1px #0060AF;
+	padding-bottom: 5px;
+}
+.cms-textblock-title,
+.page h3,
+.cms-page h3,
+.cms-page .h3{
+	color: #0461AC;
+	font-size: 16px;
+	margin-top: 20px;
+	font-weight: normal;
+}
+.cms-page .h3{
+	font-size: $fontSize;
+	margin: 10px 0;
+}
+.homepage-left-block{
+	max-width: 70%;
+}
+.cms-textblock-title.big{
+	font-size: 20px;
+	color: #0060AF;
+}
+.main-page .cms-textblock{
+	padding-left: 50px;
+}
+.cms-textblock ul{
+	padding-left: 20px;
+	padding-top: 10px;
+}
+.cms-textblock_flex{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+.cms-textblock_flex-item-title{
+	color: #6AADE0;
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 5px;
+	padding-right: 10px;
+	margin: 0;
+}
+.cms-textblock_flex-item-content p:not(:last-child){
+	border-bottom: solid 1px #0090DE;
+}
+.cms-textblock_flex-item{
+	width: 50%;
+	margin-bottom: 60px;
+}
+.cms-textblock_flex-item-content{
+	padding: 0 20px;
+}
+.cms-contents-phone{
+	color: #0090DE;
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: 0.02em;
+}
+.cms-contents-phone-title{
+	display: inline-block;
+	width: 100px;
+
+	&.long{
+		width: 200px;
+	}
+}
+.cms-contents-phone-mobile{
+	background: url("/img/mobile.png") no-repeat;
+	width: 110px;
+	height: 24px;
+	vertical-align: middle;
+	display: inline-block;
+
+	&.mts{
+		background-position: 0 -48px;
+	}
+	&.kyivstar{
+		background-position: 0 0;
+	}
+	&.life{
+		background-position: 0 -24px;
+	}
+}
+.cms-contacts-phone-icons{
+	display: inline-block;
+	height: 21px;
+	margin-right: 15px;
+	vertical-align: middle;
+	width: 21px;
+
+	&.skype{
+		background: url("/img/skype.png") center center no-repeat;
+	}
+	&.icq{
+		background: url("/img/icq.png")   center center no-repeat;
+	}
+	&.mail{
+		background: url("/img/mail.png")  center center no-repeat;
+	}
+}
+.cms-contacts-phone-info{
+	color: #7C7C7C;
+	font-size: 12px;
+}
+.content-block{
+	padding: 5px;
+	position: relative;
+	transition: 0.3s all ease;
+	margin-bottom: 20px;
+
+	border: 1px solid rgb(40, 100, 150);
+	border-radius: 6px;
+
+	&:hover{
+		box-shadow: 0 0 5px 5px rgba(40, 100, 150, 0.4);
+	}
+}
+.position-control-container{
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	.position-control{
+		position: relative;
+		display: inline-block;
+		vertical-align: top;
+
+		&.inline-buttons{
+			.block-position{
+				display: inline-block;
+				margin-right: 5px;
+			}
+		}
+		&.block-buttons{
+			.block-position{
+				display: block;
+				margin-bottom: 5px;
+			}
+		}
+	}
+}
+
+.page{
+	margin-bottom: 20px;
+
+	.btn-group{
+		margin-bottom: 20px;
+	}
+
+	.new-block-container {
+		.btn:not(:last-child) {
+			margin-right: 5px;
+		}
+
+		margin-bottom: 10px;
+	}
+
+	.cms-invisible{
+		opacity: 0.5;
+		transition: 0.3s opacity ease;
+	}
+
+	.content-block-container{
+		position: relative;
+		.content-block.ng-enter{
+			position: absolute;
+			width: 100%;
+		}
+	}
+}
+.page-settings{
+	margin-bottom: 20px;
+	.form-group{
+		position: relative;
+		font-size: 0;
+
+		label,
+		.form-control {
+			display: inline-block;
+			width: 20%;
+			vertical-align: middle;
+			font-size: $fontSize;
+
+			.form-control.autocomplete-field {
+				width: 100%;
+			}
+		}
+
+		label{
+			font-weight: bold;
+			padding-right: 5px;
+		}
+
+		.form-control{
+			font-weight: normal;
+			width: 80%;
+		}
+
+		.aircompanies-select {
+			font-size: 14px;
+			border: none;
+			box-shadow: none;
+			padding: 0;
+
+			&.form-control {
+				height: auto;
+			}
+
+			> .form-control {
+				width: 100%;
+			}
+
+			#aircompanies_list {
+				width: 150px;
+			}
+
+			.aircompany-item {
+				display: inline-block;
+				border-radius: 7px;
+				border: 2px solid #2A99EA;
+				padding: 2px;
+				margin: 3px;
+
+				.glyphicon.glyphicon-remove {
+					margin-left: 4px;
+					cursor: pointer;
+					color: #E44A4A;
+				}
+			}
+		}
+
+		.with-btn{
+			width: 95%;
+		}
+
+		.edit-cases{
+			margin-left: 5px;
+		}
+
+		.alert{
+			margin-top: 5px;
+			font-size: 14px;
+
+			.edit-cases-link{
+				color: #a94442;
+				float: right;
+
+				&:hover{
+					text-decoration: underline;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
+.page-container{
+	h4{
+		border-bottom: 1px solid ;
+	}
+
+}
+.page-container .dropdown-menu li,
+.left-page-container .dropdown-menu li{
+	padding: 2px 5px;
+	transition: 0.3s all ease;
+	&:hover{
+		cursor: pointer;
+		background: rgba(130, 200, 250, 0.4);
+	}
+}
+.form-group input[type=file]{
+	display: inline-block;
+	margin-right: 20px;
+	font-size: 14px;
+}
+.cms-page-image{
+	float: left;
+	margin: 0 25px 20px 0;
+}
+.form-group img{
+	margin-bottom: 10px;
+}
+.cms-previewLinks{
+	box-sizing: content-box;
+	//font-size: 0;
+	position: relative;
+	padding: 10px;
+
+	.cms-previewLinks-config{
+		//float: right;
+	}
+
+	.cms-previewLink{
+		display: inline-block;
+		//width: 50%;
+		font-size: 14px;
+		margin-bottom: 10px;
+
+		&.block {
+			display: block;
+		}
+	}
+
+	.two-cols {
+
+		.left-col{
+			display: flex;
+			flex-flow: row;
+			flex-wrap: wrap;
+		}
+	}
+
+	a{
+		display: block;
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+
+	img{
+		//float: left;
+		margin-right: 10px
+	}
+}
+
+.form-group {
+	position: relative;
+}
+.round-button{
+	padding: 5px 7px 3px 7px;
+	border-radius: 50%;
+}
+
+.flash-message{
+	$width: 500px;
+	position: fixed;
+	top: 80px;
+	width: $width;
+	left: 50%;
+	padding: 20px;
+	z-index: 1060;
+	margin-left: -$width / 2;
+	opacity: 1;
+	box-shadow: 0 4px 10px rgba(150, 150, 150, 0.5);
+	transition: 0.6s all ease;
+	&.ng-hide{
+		opacity: 0;
+		top: -300px
+	}
+}
+
+.cms-editable {
+	border: 1px solid #666;
+	background: rgba(204,204,204, 0.3);
+	padding: 3px;
+}
+
+.match,
+.textdiff span {
+	color: gray;
+}
+
+.ins,
+ins {
+	color: black;
+	background: #bbffbb;
+}
+
+.del,
+del {
+	color: black;
+	background: #ffbbbb;
+}
+
+.noselect {
+	user-select: none;
+}
+/*CMS END*/
+
+.cms-page {
+	height: 100%;
+	background: #fff;
+	margin: 20px;
+	padding: 20px 40px;
+
+	.breadcrumbs span {
+		display: inline-block;
+		margin-right: 5px;
+	}
+
+	.h2 {
+		margin-top: 10px;
+	}
+
+	color: black;
+
+	font-size: 14px;
+
+	h1.cms-page-title {
+		font-weight: 500;
+		font-size: 24px;
+		border: none;
+		color: black;
+	}
+
+	.cms-textblock-title,
+	.page h3,
+	.cms-page h3,
+	.cms-page .h3{
+		color: black;
+		font-size: 16px;
+		margin-top: 20px;
+		font-weight: normal;
+	}
+
+	.cms-page-date {
+		color: #828282;
+	}
+
+	.cms-page-image {
+		width: 200px;
+	}
+
+	.cms-previewLinks {
+		padding: 10px 0;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto !important;
+	}
+
+	.two-cols {
+		display: flex;
+		flex-flow: row;
+		flex-wrap: wrap;
+
+		.left-col,
+		.right-col {
+			display: grid;
+
+			grid-column-gap: 100px;
+			grid-row-gap: 50px;
+			grid-template-columns: repeat(3, 1fr);
+
+			.cms-previewLink {
+
+				.h2 {
+					margin-top: 10px;
+
+					a {
+						font-weight: 600;
+						font-size: 20px;
+						color: $body-black;
+					}
+				}
+
+				.description {
+					font-size: 14px;
+					line-height: 22px;
+					display: flex;
+					align-items: center;
+
+					color: $text-grey;
+				}
+
+			}
+		}
+	}
+
+	.cms-view-count {
+		color: $text-grey;
+		margin-top: 10px;
+
+		.cms-view-count-icon {
+			width: 16px;
+		}
+	}
+
+}
+
+@media all and (max-width: 767px){
+	.cms-page {
+		margin: 0;
+		padding: 10px 20px;
+
+		.two-cols {
+			display: flex;
+			flex-flow: column;
+
+			.left-col,
+			.right-col {
+				grid-template-columns: repeat(1, 1fr);
+			}
+		}
+	}
+}

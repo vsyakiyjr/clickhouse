@@ -1,0 +1,211 @@
+/*миксины-конструкторы */
+
+@mixin flex($jc, $ai, $fw, $fd) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-wrap: $fw;
+  flex-direction: $fd;
+}
+/*
+$xs: ($screen-xs - 1px);
+$sm: ($screen-sm - 1px);
+$md: ($screen-md - 1px);
+$lg: ($screen-lg - 1px);*/
+
+@mixin max-screen($media) {
+  @media only screen and (max-width: $media) {
+    @content;
+  }
+
+}
+
+@mixin max-and-screen($media-min, $media-max) {
+  @media only screen and (min-width: $media-min) and (max-width: $media-max) {
+    @content;
+  }
+
+}
+
+@mixin min-screen($media) {
+  @media only screen and (min-width: $media) {
+    @content;
+  }
+
+}
+
+/*флекс-миксины */
+
+@mixin flex-between() {
+  display: flex;
+  justify-content: space-between;
+}
+@mixin flex-around() {
+  display: flex;
+  justify-content: space-around;
+}
+
+@mixin flex-column() {
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+@mixin flex-center() {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-right() {
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+@mixin flex-left() {
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+@mixin flex-start(){
+  display: flex;
+  justify-content:flex-start;
+  align-items:center;
+}
+@mixin flex-end(){
+  display: flex;
+  justify-content:flex-end;
+  align-items:center;
+}
+
+/* миксины фиксы*/
+
+@mixin all-center() {
+  text-align: center !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+@mixin absolute() {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+}
+
+@mixin bottom-close {
+  position: relative;
+  bottom: 20px;
+}
+
+@mixin abs-bottom {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+@mixin mh-initial() {
+  min-height: initial !important;
+}
+
+/* миксины стилей  */
+
+@mixin size($size) {
+  height: $size;
+  width: $size;
+}
+
+@mixin background($bgc, $br, $border:initial) {
+  background-color: $bgc;
+  border-radius: $br;
+  //  padding:$padding;
+  border: $border;
+}
+
+// @mixin m_queries($prop, $val-lg, $val-md, $val-sm, $val-xs, $val-min, $val-mic) {
+// 		$prop:$val-lg;
+// 		@media only screen and (max-width: $medium) { @content; $prop:$val-md; }
+// 		@media only screen and (max-width: $small) { @content; $prop:$val-sm; }
+// 		@media only screen and (max-width: $xsmall) { @content; $prop:$val-xs; }
+// 		@media only screen and (max-width: $mini) { @content; $prop:$val-min; }
+// 		@media only screen and (max-width: $micro) { @content; $prop:$val-mic; }	
+// }
+// @mixin medium($prop, $val) {
+// 		@media only screen and (max-width: $medium) { $prop:$val;}
+// }
+/*@mixin triangle($size, $color, $direction) {
+  $width: nth($size, 1);
+  $height: nth($size, length($size));
+  $foreground-color: nth($color, 1);
+  $background-color: if(length($color) == 2, nth($color, 2), transparent);
+  height: 0;
+  width: 0;
+
+  @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+    $width: $width / 2;
+    $height: if(length($size) > 1, $height, $height/2);
+
+    @if $direction == up {
+      border-bottom: $height solid $foreground-color;
+      border-left: $width solid $background-color;
+      border-right: $width solid $background-color;
+    } @else if $direction == right {
+      border-bottom: $width solid $background-color;
+      border-left: $height solid $foreground-color;
+      border-top: $width solid $background-color;
+    } @else if $direction == down {
+      border-left: $width solid $background-color;
+      border-right: $width solid $background-color;
+      border-top: $height solid $foreground-color;
+    } @else if $direction == left {
+      border-bottom: $width solid $background-color;
+      border-right: $height solid $foreground-color;
+      border-top: $width solid $background-color;
+    }
+  } @else if ($direction == up-right) or ($direction == up-left) {
+    border-top: $height solid $foreground-color;
+
+    @if $direction == up-right {
+      border-left:  $width solid $background-color;
+    } @else if $direction == up-left {
+      border-right: $width solid $background-color;
+    }
+  } @else if ($direction == down-right) or ($direction == down-left) {
+    border-bottom: $height solid $foreground-color;
+
+    @if $direction == down-right {
+      border-left:  $width solid $background-color;
+    } @else if $direction == down-left {
+      border-right: $width solid $background-color;
+    }
+  } @else if ($direction == inset-up) {
+    border-color: $background-color $background-color $foreground-color;
+    border-style: solid;
+    border-width: $height $width;
+  } @else if ($direction == inset-down) {
+    border-color: $foreground-color $background-color $background-color;
+    border-style: solid;
+    border-width: $height $width;
+  } @else if ($direction == inset-right) {
+    border-color: $background-color $background-color $background-color $foreground-color;
+    border-style: solid;
+    border-width: $width $height;
+  } @else if ($direction == inset-left) {
+    border-color: $background-color $foreground-color $background-color $background-color;
+    border-style: solid;
+    border-width: $width $height;
+  }
+}*/
+
+/* готовые классы */
+
+
+

@@ -1,0 +1,105 @@
+<div class="modal-header">
+	История страницы
+	<button type="button"
+	        class="close"
+	        ng-click="cancel()">
+		<span class="glyphicon glyphicon-remove"></span>
+	</button>
+</div>
+<div class="modal-body table-responsive">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Запись из истории</th>
+				<th>Актуальное состояние</th>
+			</tr>
+		</thead>
+		<!--tracked attributes with displayed diff-->
+		<tbody>
+			<tr ng-repeat="diffAttr in diffAttrs">
+				<td>{{diffAttr.label}}</td>
+				<!--history-->
+				<td>
+					<div processing-diff=""
+					     left-obj="page.actual[diffAttr.name]"
+					     right-obj="page.history[diffAttr.name]"
+					     options="options">
+					</div>
+				</td>
+				<!--actual-->
+				<td>
+					<div processing-diff=""
+					     left-obj="page.history[diffAttr.name]"
+					     right-obj="page.actual[diffAttr.name]"
+					     options="options">
+					</div>
+				</td>
+			</tr>
+		</tbody>
+		<!--tracked attributes without displaying diff-->
+		<tbody>
+			<tr ng-repeat="trackAttr in trackedAttrs">
+				<td>{{trackAttr.label}}</td>
+				<td>{{page.history[trackAttr.name]}}</td>
+				<td>{{page.actual[trackAttr.name]}}</td>
+			</tr>
+		</tbody>
+		<!--content blocks-->
+		<tbody>
+			<tr>
+				<th colspan="3">Контент</th>
+			</tr>
+			<tr ng-repeat="dummy in maxContentBlocks track by $index">
+				<td>№ {{$index + 1}}</td>
+				<!--history-->
+				<td>
+					<div class="block-type">
+						<i>Тип:</i>
+						<strong>{{CmsConfig.pageElements[page.history.content.block[$index].type].label}}</strong>
+					</div>
+					<div class="block-title">
+						<div processing-diff=""
+						     left-obj="page.actual.content.block[$index].title"
+						     right-obj="page.history.content.block[$index].title"
+						     options="options">
+						</div>
+					</div>
+					<div class="block-content">
+						<div processing-diff=""
+						     left-obj="page.actual.content.block[$index].content"
+						     right-obj="page.history.content.block[$index].content"
+						     options="options">
+						</div>
+					</div>
+				</td>
+				<!--actual-->
+				<td>
+					<div class="block-type">
+						<i>Тип:</i>
+						<strong>{{CmsConfig.pageElements[page.actual.content.block[$index].type].label}}</strong>
+					</div>
+					<div class="block-title">
+						<div processing-diff=""
+						     left-obj="page.history.content.block[$index].title"
+						     right-obj="page.actual.content.block[$index].title"
+						     options="options">
+						</div>
+					</div>
+					<div class="block-content">
+						<div processing-diff=""
+						     left-obj="page.history.content.block[$index].content"
+						     right-obj="page.actual.content.block[$index].content"
+						     options="options">
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-default" ng-click="cancel()">
+		Закрыть
+	</button>
+</div>

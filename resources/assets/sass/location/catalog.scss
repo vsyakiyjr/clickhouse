@@ -1,0 +1,47 @@
+.good {
+    &-size{
+    width: 140px;
+    height: 210px;
+  }
+  &-img{
+    width: 125px;
+    height: 125px;
+  }
+  &Img {
+    &-size {
+      height: 250px;
+      width: 250px;
+    }
+  }
+  &-catalog{
+    &-size{
+      width: 285px;
+      height: 429px;
+
+    }
+    &-hover{
+      &:hover{
+        .goodButton-color{
+          @extend .text-primary;
+        }
+        .goodHeight-color{
+          @extend .text-primary;
+        }
+      }
+    }
+  }
+}
+
+.product {
+  &-border {
+
+    box-shadow: 0px 0px 4px theme-color("info");
+  }
+  &Collection{
+    .good-catalog-size {
+      transform: scale(0.75);
+      @extend .substrate-shadow-hover, :hover;
+      @extend .good-catalog-hover, :hover;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+// colors
+$main: #FFDB00;
+$bgGradient: linear-gradient(180deg, #000000 0%, #121110 100%);
+$black: #121110;
+$red: #C0392B;
+$placeholder: #BDBDBD;
+
+
+@mixin laptop {
+    @media screen and (max-width: 1460px) {
+        @content;
+    }
+}
+@mixin ipad {
+    @media screen and (max-width: 1025px) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media screen and (max-width: 900px) {
+        @content;
+    }
+}
+@mixin phone {
+    @media screen and (max-width: 640px) {
+        @content;
+    }
+}
+@mixin mini {
+    @media screen and (max-width: 325px) {
+        @content;
+    }
+}
+@mixin height {
+    @media screen and (max-height: 325px) {
+        @content;
+    }
+}

@@ -1,0 +1,65 @@
+.VueCarousel-slide{
+  user-select: inherit!important;
+  overflow-x: scroll;
+}
+
+#_hiddenCopyText_{
+  display: none!important;
+}
+
+.v-navigation-drawer[data-booted=true] {
+  width: 200px !important;
+}
+
+.theme--light .v-navigation-drawer {
+  background: white;
+}
+
+.theme--light .v-navigation-drawer:not(.v-navigation-drawer--floating) .v-navigation-drawer__border {
+  background-color: transparent !important;
+}
+
+.v-navigation-drawer .v-list a {
+  background: rgba(225, 177, 44, 0.1);
+  border-top: 1px solid rgba(225, 177, 44, 0.3);
+  border-right: 1px solid rgba(225, 177, 44, 0.3);
+}
+
+.v-navigation-drawer .v-list > div:last-child a {
+  border-bottom: 1px solid rgba(225, 177, 44, 0.3);
+}
+
+.v-navigation-drawer .v-list a.v-list__tile--active{
+  background-color: rgba(255, 255, 255, 0.1);
+  border-right: 0;
+}
+
+.v-list--dense.v-list--dense .v-list__tile:not(.v-list__tile--avatar) {
+  height: 60px;
+  color: #000 !important;
+}
+
+
+.admin-order {
+  .order-title {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid;
+  }
+
+  .box-artic-btn {
+    padding: 10px 0;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@import "../location/admin";
+@import "orders";
+@import "catalog";
+@import "information";
+@import "promo";
+@import "transitions";

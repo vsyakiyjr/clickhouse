@@ -1,0 +1,33 @@
+.footer {
+    background-color: #F8F8F8;
+    padding: 19px 32px;
+    font-size: 14px;
+    line-height: 17px;
+    color: #828282;
+    @include phone {
+        padding: 19px;
+    }
+    &-wrap {
+        display: flex;
+        justify-content: space-between;
+    }
+    ul {
+        li {
+            transition: all .2s ease-in-out;
+            margin-right: 11px;
+            &:last-child {margin-right: 0;}
+            &:hover {
+                transition: all .2s ease-in-out;
+                svg {
+                    path {
+                        fill: #000000;
+                    }
+                }
+            }
+        }
+    }
+    &_socials__list {
+        display: flex;
+        align-items: center;
+    }
+}

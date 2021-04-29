@@ -1,0 +1,449 @@
+
+.container {
+  &-large {
+    max-width: 978px;
+    @include max-screen(1024px) {
+      width: 100%;
+    }
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  &-small {
+
+  }
+}
+
+.inner {
+  &-flex {
+    @include flex(space-between, stretch, nowrap, row);
+
+    &-between {
+      @include flex(space-between, stretch, nowrap, row);
+
+    }
+
+    &-right {
+      @include flex(space-between, flex-start, nowrap, row);
+      &-top {
+        @include flex(flex-end, flex-start, nowrap, row);
+      }
+      &-center {
+        @include flex(flex-end, center, nowrap, row);
+
+      }
+    }
+    &-center {
+      @include flex(center, center, nowrap, row);
+
+    }
+  }
+  &-font {
+    &-30 {
+      font-size: 30px;
+    }
+    &-26 {
+      font-size: 26px;
+    }
+  }
+}
+
+.item {
+
+}
+
+.block {
+  &-1 {
+    &-3 {
+      flex-basis: ((100%/3)*1);
+
+    }
+    &-6 {
+
+      flex-basis: ((100%/6)*1);
+    }
+  }
+  &-2 {
+    flex-basis: 50%;
+    &-3 {
+      flex-basis: ((100%/3)*2);
+
+    }
+    &-6 {
+
+      flex-basis: ((100%/6)*2);
+    }
+
+  }
+  &-5 {
+    &-6 {
+
+      flex-basis: ((100%/6)*5);
+    }
+
+  }
+}
+
+.section {
+  background-color: #fff;
+}
+
+$screen: (
+        md:1279px,
+        sm:1023px,
+        xs:767px
+);
+
+$justify-content: (
+        between: space-between,
+        left: flex-start,
+        right:flex-end,
+        center:center,
+        around:space-around
+);
+$align-items: (
+        top: flex-start,
+        bottom:flex-end,
+        center:center,
+        base:baseline,
+        stretch:stretch
+);
+$direction: (
+        column:column,
+        row:row
+);
+
+$wrap: (
+        wrap:wrap,
+        nowrap:nowrap
+);
+$basis: (
+        100:100%,
+        90:90%,
+        80:80%,
+        75:75%,
+        70:70%,
+        60:60%,
+        50:50%,
+        40:40%,
+        33:(100%/3),
+        30:30%,
+        25:25%,
+        20:20%,
+        16:(100%/6),
+        15:15%,
+        10:10%,
+);
+$sizes: (
+        1:1px,
+        2:2px,
+        3:3px,
+        4:4px,
+        5:5px,
+        6:6px,
+        7:7px,
+        8:8px,
+        9:9px,
+        10:10px,
+        12:12px,
+        14:14px,
+        15:15px,
+        16:16px,
+        18:18px,
+        20:20px,
+        22:22px,
+        30:30px
+);
+$font: (
+        10:10px,
+        11:11px,
+        12:12px,
+        13:13px,
+        14:14px,
+        15:15px,
+        16:16px,
+        17:17px,
+        18:18px,
+        19:19px,
+        20:20px,
+        21:21px,
+        22:22px,
+        23:23px,
+        24:24px,
+        25:25px,
+        26:26px,
+        27:27px,
+        28:28px,
+        29:29px,
+        30:30px,
+        31:31px,
+        32:32px
+);
+$color: (
+        fff:#fff,
+        bright:#ef7c37,
+        black:#000,
+        gray:#656d78
+);
+$zindex: (
+        1:1,
+        10:10,
+        100:100,
+        1000:1000,
+        10000:10000,
+);
+$align: (
+        center:center,
+        left:left,
+        right:right,
+        justify:justify
+);
+
+$content: url(/web/images/map-icon.png) no-repeat left bottom #ee7633;
+$back: (
+        map-icon:map-icon,
+);
+$position: (
+        top:top,
+        right:right,
+        bottom:bottom,
+        left:left
+);
+$position_h: (
+        right:right,
+        left:left
+);
+$position_v: (
+        top:top,
+        bottom:bottom
+);
+.flex {
+
+  @each $horiz, $jc in $justify-content {
+
+    &-#{$horiz} {
+
+      @each $vertic, $ai in $align-items {
+
+        &-#{$vertic} {
+
+          display: flex;
+          align-items: $ai;
+
+          justify-content: $jc;
+
+        }
+      }
+    }
+  }
+  @each $horiz, $jc in $justify-content {
+
+    &-#{$horiz} {
+
+      display: flex;
+
+      justify-content: $jc;
+
+    }
+
+  }
+}
+
+.basis {
+
+  @each $base, $bas in $basis {
+
+    &-#{$base} {
+      flex-basis: $bas;
+    }
+  }
+}
+
+@each $wrp, $wr in $wrap {
+
+  .#{$wrp} {
+    flex-wrap: $wr;
+  }
+}
+
+@each $dir, $dr in $direction {
+
+  .#{$dir} {
+    flex-direction: $dr;
+  }
+}
+
+.inner {
+  &-ph {
+    @each $pad, $pd in $sizes {
+
+      &-#{$pad} > * {
+        padding-right: $pd;
+        padding-left: $pd;
+      }
+    }
+  }
+  &-pv {
+    @each $pad, $pd in $sizes {
+
+      &-#{$pad} > * {
+        padding-top: $pd;
+        padding-bottom: $pd;
+      }
+    }
+  }
+
+  &-font {
+    @each $fon, $fs in $font {
+
+      &-#{$fon} > * {
+        font-size: $fs;
+      }
+    }
+  }
+  &-color {
+    @each $col, $cl in $color {
+
+      &-#{$col} > * {
+        color: $cl;
+      }
+    }
+  }
+
+}
+
+.padding {
+
+  @each $pad, $pd in $sizes {
+
+    &-h#{$pad} {
+      padding-right: $pd;
+      padding-left: $pd;
+    }
+  }
+
+  @each $pad, $pd in $sizes {
+
+    &-v#{$pad} {
+      padding-top: $pd;
+      padding-bottom: $pd;
+    }
+  }
+
+}
+
+.font {
+  @each $fon, $fs in $font {
+
+    &-#{$fon} {
+      font-size: $fs;
+    }
+  }
+}
+
+.bgc {
+  @each $bgc, $bg in $color {
+
+    &-#{$bgc} {
+      background-color: $bg;
+    }
+    &-#{$bgc}-hover:hover {
+      background-color: $bg;
+    }
+  }
+}
+
+.z {
+  @each $zind, $zi in $zindex {
+
+    &-#{$zind} {
+      z-index: $zi;
+    }
+  }
+}
+
+@each $sides, $sd in $sizes {
+
+  .mt-#{$sides} {
+    margin-top: $sd;
+  }
+  .mb-#{$sides} {
+    margin-bottom: $sd;
+  }
+  .mr-#{$sides} {
+    margin-right: $sd;
+  }
+  .ml-#{$sides} {
+    margin-left: $sd;
+  }
+  .pt-#{$sides} {
+    padding-top: $sd;
+  }
+  .pb-#{$sides} {
+    padding-bottom: $sd;
+  }
+  .pr-#{$sides} {
+    padding-right: $sd;
+  }
+  .pl-#{$sides} {
+    padding-left: $sd;
+  }
+  .br-#{$sides} {
+    border-radius: $sd;
+  }
+}
+
+.align {
+  @each $alig, $al in $align {
+
+    &-#{$alig} {
+      text-align: $al;
+    }
+  }
+}
+
+.color {
+  @each $col, $cl in $color {
+
+    &-#{$col} {
+      color: #{$cl} !important;
+    }
+    &-#{$col}-hover:hover {
+      color: #{$cl} !important;
+    }
+  }
+}
+
+@mixin back_img($string) {
+  background: $string;
+}
+
+.test {
+  @include back_img($content);
+}
+
+.back {
+  &-img {
+    @each $backgr, $bg in $back {
+
+      &-#{$backgr} {
+        background-image: url(/web/images/#{$bg}.png);
+      }
+    }
+  }
+
+  @each $posh, $ph in $position_h {
+
+    &-#{$posh} {
+      @each $posv, $pv in $position_v {
+
+        &-#{$posv} {
+          background-position: $ph $pv;
+          background-repeat: no-repeat;
+        }
+
+      }
+    }
+
+  }
+}

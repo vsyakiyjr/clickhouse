@@ -1,0 +1,56 @@
+<form name="newPageForm"
+      ng-submit="newPageForm.$valid && createPage(newPage, selectedPreset)">
+	<div class="modal-header">
+		<h4>Добавить страницу в {{parentDirectory.description}}</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group" ng-class="{'has-error': newPageForm.title.$invalid}">
+			<label class="control-label" for="page-title">Название</label>
+			<input type="text"
+			       id="page-title"
+			       class="form-control"
+			       name="title"
+			       ng-blur="generateAlias(newPage)"
+			       ng-model="newPage.title"
+			       required
+			       placeholder="Title" />
+			<span ng-show="newPage.title.length > 0"
+			      ng-click="newPage.title = ''"
+			      class="glyphicon glyphicon-remove form-control-feedback folder-clear"></span>
+		</div>
+		<div class="form-group" ng-class="{'has-error': newPageForm.description.$invalid}">
+			<label class="control-label" for="page-description">Описание</label>
+			<textarea class="form-control"
+			          id="page-description"
+			          name="description"
+			          required
+			          placeholder="Decription"
+			          ng-model="newPage.description"></textarea>
+		</div>
+		<div class="form-group" ng-class="{'has-error': newPageForm.alias.$invalid}">
+			<label class="control-label" for="page-alias">Алиас</label>
+			<input type="text"
+			       id="page-alias"
+			       name="alias"
+			       required
+			       class="form-control"
+			       placeholder="Alias"
+			       ng-pattern="/^[0-9a-z_-]+$/i"
+			       ng-blur="checkAlias(newPageForm.alias, newPage, 'page')"
+			       ng-change="transliterate(newPage, 'alias')"
+			       ng-model="newPage.alias"/>
+			<span ng-show="newPage.alias.length > 0"
+			      ng-click="newPage.alias = ''"
+			      class="glyphicon glyphicon-remove form-control-feedback folder-clear"></span>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-disabled="newPageForm.$invalid">
+			Создать
+		</button>
+		<span class="btn btn-default"
+		      ng-click="cancel(modalInstance)">
+			Закрыть окно
+		</span>
+	</div>
+</form>

@@ -1,0 +1,55 @@
+<form name="pageSettingsOffer" class="page-settings">
+	<h4>Отображение на главной</h4>
+	<div class="form-group">
+		<label class="control-label" for="pageImageOffer">Картинка для карусели (530x250)</label>
+		<img ng-src="{{page.special_offer.image_path}}"
+		     ng-hide="page.special_offer.image == 'remove'"
+		     ng-show="page.special_offer.image_path"/>
+		     alt="Картинка к странице"
+		     width="150"/>
+		<input type="file"
+		       ng-readonly="editMode == 'history'"
+		       name="image"
+		       id="pageImageOffer"
+		       fileread="page.special_offer.image"
+		       accept="image/*" />
+		<span class="btn btn-default"
+		      uib-tooltip="Убрать картинку"
+		      ng-disabled="!page.special_offer.image_path || page.special_offer.image == 'remove'"
+		      ng-click="page.special_offer.image = 'remove' ">
+			<span class="glyphicon glyphicon-remove"></span> Убрать картинку
+		</span>
+	</div>
+	<div class="form-group">
+		<label class="control-label" for="offerEnabled">Предложение активно</label>
+		<input type="checkbox"
+		       id="offerEnabled"
+		       ng-readonly="editMode == 'history'"
+		       name="enabled"
+		       ng-model="page.special_offer.enabled"
+		       style="visibility: hidden; position: absolute;"
+		       ng-checked="page.special_offer.enabled | boolean"
+		/>
+		<span class="btn"
+		      ng-click="page.special_offer.enabled = !page.special_offer.enabled"
+		      ng-class="page.special_offer.enabled ? 'btn-success' : 'btn-danger'">
+			<span class="fa" ng-class="page.special_offer.enabled ? 'fa-toggle-on' : 'fa-toggle-off'"></span>
+		</span>
+	</div>
+	<div class="form-group">
+		<label class="control-label" for="offerEnabled">Поиск перелётов сразу при открытии страницы</label>
+		<input type="checkbox"
+			   id="searchAtOpen"
+			   ng-readonly="editMode == 'history'"
+			   name="searchAtOpen"
+			   ng-model="page.special_offer.search_at_opening"
+			   style="visibility: hidden; position: absolute;"
+			   ng-checked="page.special_offer.search_at_opening | boolean"
+		/>
+		<span class="btn"
+			  ng-click="page.special_offer.search_at_opening = !page.special_offer.search_at_opening"
+			  ng-class="page.special_offer.search_at_opening ? 'btn-success' : 'btn-danger'">
+			<span class="fa" ng-class="page.special_offer.search_at_opening ? 'fa-toggle-on' : 'fa-toggle-off'"></span>
+		</span>
+	</div>
+</form>

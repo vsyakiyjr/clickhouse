@@ -1,0 +1,9 @@
+<div class="new-block-container">
+	<div class="new-block-title"><strong>Добавить блок:</strong></div>
+	<button class="btn btn-default btn-sm"
+	        ng-repeat="(type, typeDetails) in availableElements"
+	        ng-click="addBlock(type)">
+		<span class="{{typeDetails.icon}}"></span>
+		{{typeDetails.label}}
+	</button>
+</div>

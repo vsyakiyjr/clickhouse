@@ -1,0 +1,38 @@
+<article class="folder folder-item" ng-class="tree.fullpath == '/catalog' ? 'hide-add' : ''" ng-init="collapseTree(tree)">
+	<div class="folder-label-container clearfix" ng-show="tree">
+		<div class="folder-label pull-left" ng-click="loadDirectoryContents(tree)">
+			<span class="glyphicon" ng-class="'glyphicon-folder-' + (tree.collapsed ? 'close' : 'open') ">
+			</span> &nbsp;<span ng-class="tree.special ? 'bold' : ''">{{tree.description}}</span>
+			<span class="folder-alias">{{tree.fullpath}}</span>
+			<!--<span class="glyphicon glyphicon-pencil folder-editPage" ng-hide="tree.fullpath == '/'"
+				  ng-click="editDirectoryDialog(tree, $event)">
+			</span>-->
+			<span class="fa fa-spinner fa-spin" ng-show="loading"></span>
+		</div>
+
+		<div class="folder-addObject-container btn-group btn-group-xs pull-right"
+			 uib-tooltip="Добавить страницу в {{tree.description}}"
+			 tooltip-append-to-body="true">
+			<!--<button class="btn btn-link" ng-click="toggleAddDirectoryDialog(tree)">
+				<span class="glyphicon glyphicon-plus"></span>
+				<span class="glyphicon glyphicon-folder-open"></span>
+			</button>-->
+			<button class="btn btn-link" ng-click="toggleAddPageDialog(tree)">
+				<span class="glyphicon glyphicon-plus"></span>
+				<span class="glyphicon glyphicon-file"></span>
+			</button>
+		</div>
+	</div>
+	<div class="folder-pages-container" uib-collapse="tree.collapsed">
+		<div class="folder-container"
+		     ng-repeat="folder in tree.directories track by folder.id"
+			 host="host"
+		     site-tree="folder"></div>
+		<article class="folder-page folder-item" ng-repeat="page in tree.pages track by page.id">
+			<page-in-directory page="page"></page-in-directory>
+			<div class="nested-pages folder-container folder-item" ng-show="page.nested_pages">
+				<page-in-directory ng-repeat="nestedPage in page.nested_pages track by nestedPage.id" page="nestedPage"></page-in-directory>
+			</div>
+		</article>
+	</div>
+</article>

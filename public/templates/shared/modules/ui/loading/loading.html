@@ -1,0 +1,12 @@
+<div class="loading-block ui-loading" ng-show="loadingActive">
+	<div class="loading-pad">
+		<div class="title">
+			<i class="svg-icon icon-info"></i>
+			<span ng-bind="title"></span>
+		</div>
+		<div class="content">
+			<div class="text" ng-bind-html="text"></div>
+			<ui-loading-progress-bar finished="closing"></ui-loading-progress-bar>
+		</div>
+	</div>
+</div>

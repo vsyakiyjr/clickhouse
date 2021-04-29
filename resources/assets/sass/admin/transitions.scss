@@ -1,0 +1,42 @@
+
+/**
+ transitions
+ @link https://markus.oberlehner.net/blog/vue-router-page-transitions/
+*/
+.fade-enter-active,
+.fade-leave-active {
+	transition-duration: 0.3s;
+	transition-property: height, opacity;
+	transition-timing-function: ease;
+	overflow: hidden;
+}
+
+.fade-enter,
+.fade-leave-active {
+	opacity: 0;
+
+	&.with-replace {
+		width: 100%;
+		position: absolute;
+	}
+}
+
+.fadeInLeft, .fadeLeft-enter-active, .fadeLeft-leave-active, .fadeOutLeft {
+	animation-duration: 0.3s;
+	animation-fill-mode: both
+}
+
+.fadeInLeft, .fadeLeft-enter-active {
+	animation-name: fadeInLeft
+}
+
+@keyframes fadeInLeft {
+	from {
+		opacity: 0;
+		transform: translate3d(-100%, 0, 0)
+	}
+	to {
+		opacity: 1;
+		transform: none
+	}
+}

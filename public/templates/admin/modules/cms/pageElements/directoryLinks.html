@@ -1,0 +1,41 @@
+<div class="cms-previewLinks">
+	<div class="cms-previewLink"
+	     ng-class="block.config.columns == 1 ? 'block' : ''"
+	     ng-repeat="page in block.directory.pages | limitTo: 8">
+		<img ng-src="{{page.imagePath}}"
+		     ng-show="page.imagePath"
+		     alt="{{page.title}}"
+		     ng-width="block.config.columns == 1 ? 120 : 55" />
+		<a ng-href="{{page.parent_directory + page.alias}}">
+			{{page.title}}
+		</a>
+		<span ng-if="block.config.columns == 1" textblock-preview="page" cut-length="300"></span>
+		<span ng-if="block.config.columns == 2" textblock-preview="page" cut-length="70"></span>
+	</div>
+	<div class="cms-previewLinks-config">
+		<button class="btn btn-sm"
+		        uib-tooltip="Ссылки в одну колонку"
+		        tooltip-append-to-body="true"
+		        tooltip-popup-delay="500"
+		        ng-class="block.config.columns == 1 ? 'btn-success' : 'btn-default'"
+		        ng-click="block.config.columns =  1">
+			<span class="fa fa-list-alt"></span> 1
+		</button>
+		<button class="btn btn-sm"
+		        uib-tooltip="Ссылки в две колонки"
+		        tooltip-append-to-body="true"
+		        tooltip-popup-delay="500"
+		        ng-class="block.config.columns == 2 ? 'btn-success' : 'btn-default'"
+		        ng-click="block.config.columns =  2">
+			<span class="fa fa-list-alt"></span> 2
+		</button>
+		<button class="btn btn-default btn-sm"
+		        uib-tooltip="Настройки блока"
+		        tooltip-append-to-body="true"
+		        tooltip-popup-delay="500"
+		        ng-click="editBlock(block, $index)"
+		        type="button">
+			<span class="fa fa-cogs"></span>
+		</button>
+	</div>
+</div>

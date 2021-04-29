@@ -1,0 +1,24 @@
+
+// @import "~bootstrap/scss/bootstrap";
+@import "~owl.carousel/dist/assets/owl.carousel.min.css";
+@import "~owl.carousel/dist/assets/owl.theme.default.css";
+@import "/libs/css/font-awesome-4.7.0.min.css";
+
+@import '../sass/new-styles/reset';
+@import '../sass/new-styles/vars'; 
+@import '../sass/new-styles/settings'; 
+ 
+// layouts
+@import './new-styles/layouts/header';
+@import './new-styles/layouts/footer';
+
+// pages
+@import './new-styles/pages/home';
+@import './new-styles/pages/cart-page';
+@import './new-styles/pages/product-page';
+@import './new-styles/pages/auth-modal';
+@import './new-styles/pages/category';
+@import './new-styles/pages/info-page';
+@import './new-styles/pages/blog';
+@import './new-styles/pages/search';
+@import './new-styles/pages/account';

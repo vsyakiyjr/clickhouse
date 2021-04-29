@@ -1,0 +1,22 @@
+@import "modal-bs-3";
+@import "dropdown-bs-3";
+@import "pagination-bs-3";
+@import "panel-bs-3";
+@import "tooltip-bs-3";
+
+.modal.fade.in {
+	opacity: 1;
+}
+
+.form-control-feedback {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 2;
+	display: block;
+	width: 34px;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	pointer-events: none;
+}

@@ -1,0 +1,40 @@
+.error-block {
+	height: 100%;
+	color: $text-grey;
+	text-align: center;
+
+	display: flex;
+	flex-flow: column;
+
+	align-items: center;
+	justify-content: center;
+
+	.error-title {
+		text-transform: uppercase;
+		font-weight: 600;
+		font-size: 24px;
+	}
+
+	.error-img img {
+		max-width: 200px;
+	}
+
+	.error-message {
+		margin-top: 20px;
+		font-size: 12px;
+	}
+
+	.error-link {
+		font-style: normal;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 19px;
+
+		display: flex;
+		align-items: center;
+		text-align: center;
+		text-decoration-line: underline;
+
+		color: #828282;
+	}
+}

@@ -1,0 +1,150 @@
+.currency-switch {
+	margin-right: 20px;
+	margin-top: 9px;
+	white-space: nowrap;
+
+	border-left: 1px solid $dark-grey;
+
+	&.tabs {
+		border-left: none;
+
+		.btn {
+			border: none;
+			margin: 0;
+
+			&.btn-lg {
+				font-size: 1.5em;
+			}
+
+			color: white;
+			&:first-child {
+				border-radius: 10px 0 0 10px !important;
+				margin: 0;
+			}
+
+			&:last-child {
+				border-radius: 0 10px 10px 0 !important;
+				margin: 0;
+			}
+
+			&.not-selected {
+				background: #cecece;
+			}
+
+			&.selected {
+				background: #2ECC71;
+			}
+
+		}
+	}
+
+	padding-left: 10px;
+
+	@media all and (max-width: 320px) {
+		margin-right: 5px;
+	}
+
+	@media all and (max-width: $screen-md) {
+		margin-top: 5px;
+	}
+
+	strong {
+		position: relative;
+		top: 2px;
+	}
+
+	$primary: $orange;
+
+	$thumb-size: 20px;
+	$thumb-bg-color: #FAFAFA;
+
+	$track-width: 34px;
+	$track-height: 14px;
+
+	$focus-ring-size: 42px;
+	$focus-ring-left: -(($focus-ring-size - $thumb-size) / 2);
+	$focus-ring-top: -(($focus-ring-size - $thumb-size) / 2);
+
+	.ui-switch {
+		width: 33px;
+		margin: 0 10px;
+		top: 0;
+		height: 1em;
+
+		@media all and (max-width: 320px) {
+			margin: 0 5px;
+		}
+
+
+		position: relative;
+
+		&.checked {
+			//.ui-switch-track {
+			//	background-color: opacify($primary, 0.5);
+			//}
+
+			.ui-switch-thumb {
+				left: 14px;
+				//background-color: $primary;
+			}
+
+			.ui-switch-focus-ring {
+				left: $focus-ring-left + 14px;
+				//background-color: opacify($primary, 0.12);
+			}
+		}
+	}
+
+	.ui-switch-track {
+		position: absolute;
+		top: ( ($thumb-size - $track-height) / 2 );
+
+		height: $track-height;
+		width: $track-width;
+
+		background-color: $text-grey;
+		border-radius: 8px;
+
+		transition: background-color 0.1s linear;
+	}
+
+	.ui-switch-thumb {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		width: $thumb-size;
+		height: $thumb-size;
+
+		border-radius: 50%;
+		background-color: $thumb-bg-color;
+
+		box-shadow: 0 1px 3px $text-grey;
+
+		transition: all 0.2s ease;
+	}
+
+	.ui-switch-focus-ring {
+		position: absolute;
+		top: $focus-ring-top;
+		left: $focus-ring-left;
+		z-index: -1;
+
+		border-radius: 50%;
+		width: $focus-ring-size;
+		height: $focus-ring-size;
+
+		background-color: $text-grey;
+		transform: scale(0);
+		opacity: 0;
+
+		transition: all 0.2s ease;
+	}
+
+	.ui-switch-input {
+		position: absolute;
+		opacity: 0;
+	}
+}
+
+

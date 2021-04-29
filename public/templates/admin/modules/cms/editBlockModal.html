@@ -1,0 +1,77 @@
+<div class="modal-header">
+	<modal-close></modal-close>
+	<h4 class="modal-title">
+		Редактирование настроек блока <strong>{{data.block.title}}</strong>
+	</h4>
+</div>
+<div class="modal-body">
+	<div class="form-horizontal form-group-sm">
+		<div class="form-group">
+			<label class="control-label" for="columns">Колонок в левом блоке</label>
+			<select name="columns"
+			        ng-model="data.block.config.columns"
+			        class="form-control"
+			        id="columns">
+				<option ng-value="1">1</option>
+				<option ng-value="2">2</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="show_right_block">Показывать правый блок</label>
+			<input type="checkbox" id="show_right_block" ng-model="data.block.config.show_right_block" />
+		</div>
+
+		<div class="form-group">
+			<label class="control-label" for="pages">Страниц в левом блоке с превью</label>
+			<input ng-model="data.block.config.pages"
+			       id="pages"
+			       class="form-control"
+			       type="number"
+			       step="1"
+			       min="1"
+			/>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="links_in_right_block">Страниц в правом блоке с ссылками</label>
+			<input ng-model="data.block.config.links_in_right_block"
+			       id="links_in_right_block"
+			       class="form-control"
+			       type="number"
+			       step="1"
+			       min="1"
+			/>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="text_cut_1_col">Максимум символов в описании для 1 колонки</label>
+			<input ng-model="data.block.config.text_cut_1_col"
+			       id="text_cut_1_col"
+			       class="form-control"
+			       type="number"
+			       step="1"
+			       min="1"
+			/>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="text_cut_2_col">Максимум символов в описании для 2 колонок</label>
+			<input ng-model="data.block.config.text_cut_2_col"
+			       id="text_cut_2_col"
+			       class="form-control"
+			       type="number"
+			       step="1"
+			       min="1"
+			/>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button"
+	        class="btn btn-success"
+	        ng-click="buttonClick('save')">
+		Сохранить
+	</button>
+	<button type="button"
+	        class="btn btn-danger"
+	        ng-click="cancel()">
+		Отмена
+	</button>
+</div>

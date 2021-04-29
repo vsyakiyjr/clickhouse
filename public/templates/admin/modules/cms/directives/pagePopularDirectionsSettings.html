@@ -1,0 +1,208 @@
+<form name="pageSettingsPopular" class="page-settings">
+	<h4>Настройки</h4>
+	<div class="form-group" ng-if="page.template_name != 'popularDirections'">
+		<label class="control-label" for="templateName">Шаблон</label>
+		<select id="templateName" name="templateName" ng-model="page.template_name" class="form-control">
+			<option value="popularDirections.fromCountry">Страна -> Аэропорт</option>
+			<option value="popularDirections.toCountry">Аэропорт -> Страна</option>
+		</select>
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageSettingsPopular.airportFrom.$invalid}">
+		<label class="control-label" for="airportFrom">Откуда (аэропорт)</label>
+		<input type="text"
+		       id="airportFrom"
+		       class="form-control with-icon with-btn"
+		       name="airportFrom"
+			   select-callback="generatePageParamsFromPopularDirection()"
+			   model-iata="page.popular_direction.airport_from"
+		       model-object="page.popular_direction.from"
+			   with-full-info="true"
+		       placeholder="Город или аэропорт вылета"
+		       av-autocomplete-airport=""
+		/>
+		<button type="button"
+				class="btn btn-sm btn-default edit-cases"
+				uib-tooltip="Редактировать падежи"
+				tooltip-append-to-body="true"
+				tooltip-placement="left"
+				tooltip-popup-delay="300"
+				ng-click="editCases(page.popular_direction.from)">
+			<span class="glyphicon glyphicon-pencil"></span>
+		</button>
+		<div class="alert alert-danger"
+			 role="alert"
+			 ng-if="page.popular_direction.from && !hasFullFilledNameCases(page.popular_direction.from)"
+		>
+			<strong>
+				Не заполнены падежи для аэропорта!
+			</strong>
+
+			<span class="edit-cases-link" ng-click="editCases(page.popular_direction.from)">Редактировать</span>
+		</div>
+	</div>
+
+	<div class="form-group" ng-class="{'has-error': pageSettingsPopular.fromCountry.$invalid}"
+		 ng-if="page.template_name == 'popularDirections.fromCountry'"
+	>
+		<label class="control-label" for="fromCountry">Откуда (страна)</label>
+		<input class="form-control"
+			   id="fromCountry"
+			   name="fromCountry"
+			   select-callback="generatePageParamsFromPopularDirection()"
+			   model-code="page.popular_direction.country_from"
+			   ng-model="page.popular_direction.country_from"
+			   placeholder="Страна"
+			   av-autocomplete-country
+		/>
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageSettingsPopular.airportTo.$invalid}">
+		<label class="control-label" for="airportTo">Куда (аэропорт)</label>
+		<input type="text"
+		       id="airportTo"
+		       class="form-control with-icon  with-btn"
+		       name="airportTo"
+			   select-callback="generatePageParamsFromPopularDirection()"
+		       model-iata="page.popular_direction.airport_to"
+		       model-object="page.popular_direction.to"
+			   with-full-info="true"
+		       placeholder="Город или аэропорт вылета"
+		       av-autocomplete-airport=""
+		/>
+		<button type="button"
+				class="btn btn-sm btn-default edit-cases"
+				uib-tooltip="Редактировать падежи"
+				tooltip-append-to-body="true"
+				tooltip-placement="left"
+				tooltip-popup-delay="300"
+				ng-click="editCases(page.popular_direction.to)">
+			<span class="glyphicon glyphicon-pencil"></span>
+		</button>
+		<div class="alert alert-danger"
+			 role="alert"
+			 ng-if="page.popular_direction.to && !hasFullFilledNameCases(page.popular_direction.to)"
+		>
+			<strong>
+				Не заполнены падежи для аэропорта!
+			</strong>
+
+			<span class="edit-cases-link" ng-click="editCases(page.popular_direction.to)">Редактировать</span>
+		</div>
+	</div>
+
+
+
+	<div class="form-group" ng-class="{'has-error': pageSettingsPopular.toCountry.$invalid}"
+		 ng-if="page.template_name == 'popularDirections.toCountry'"
+	>
+		<label class="control-label" for="toCountry">Куда (страна)</label>
+		<input class="form-control"
+			   id="toCountry"
+			   name="toCountry"
+			   select-callback="generatePageParamsFromPopularDirection()"
+			   model-code="page.popular_direction.country_to"
+			   ng-model="page.popular_direction.country_to"
+			   ng-required="true"
+			   placeholder="Страна"
+			   av-autocomplete-country
+		/>
+	</div>
+
+	<div class="form-group" ng-class="{'has-error': pageSettingsPopular.max_live_hours_for_cache.$invalid}">
+		<label class="control-label" for="max_live_hours_for_cache">Маскимальное время жизни в кэше</label>
+		<input type="number"
+		       step="1"
+		       min="0"
+		       id="max_live_hours_for_cache"
+		       class="form-control with-icon"
+		       ng-model="page.popular_direction.max_live_hours_for_cache"
+		       name="max_live_hours_for_cache"
+		       placeholder="Маскимальное время жизни в кэше"
+			   required
+		/>
+	</div>
+
+	<div class="form-group clearfix form-group-sm" ng-repeat="(detailName, detail) in page.popular_direction.details"
+	     ng-class="{'has-error': pageSettingsPopular[detailName].$invalid}">
+		<label class="control-label" for="{{detailName}}">{{detail.label}}</label>
+		<input ng-if="['aircompanies_list', 'priority_aircompany', 'cheapest_aircompany'].indexOf(detailName) == -1"
+			   type="text"
+		       id="{{detailName}}"
+		       ng-model="detail.raw_value"
+			   ng-change="generatePageParamsFromPopularDirection()"
+		       class="form-control"
+		       name="{{detailName}}"
+			   required
+		/>
+
+		<div ng-if="detailName === 'aircompanies_list'"
+		     class="form-control aircompanies-select pull-right">
+			<input type="text"
+				   id="aircompanies_list"
+				   name="aircompanies_list"
+				   autocomplete="off"
+				   class="form-control"
+				   placeholder="Поиск авиакомпании"
+				   ng-model="currentAircompany.name"
+				   uib-typeahead="aircompany as (aircompany.iata + ' - ' + aircompany.name) for aircompany in aircompaniesAutocomplete($viewValue)"
+				   typeahead-min-length="2"
+				   typeahead-wait-ms="500"
+				   typeahead-on-select="addAircompany($item)"
+			/>
+			<span ng-repeat="aircompany in page.aircompaniesList" class="aircompany-item">
+				<span ng-bind="aircompany"></span>
+				<span class="glyphicon glyphicon-remove" ng-click="removeAircompany(aircompany)"></span>
+			</span>
+		</div>
+
+		<div ng-if="detailName === 'priority_aircompany'" class="form-control aircompanies-select">
+			<select
+				name="priority_aircompany"
+				id="priority_aircompany"
+				class="form-control"
+				ng-model="detail.raw_value"
+				required
+			>
+				<option
+					ng-repeat="aircompany in page.aircompaniesList"
+					value="{{aircompany}}">{{aircompany}}
+				</option>
+			</select>
+		</div>
+
+		<div ng-if="detailName === 'cheapest_aircompany'"
+		     class="form-control aircompanies-select">
+			<select
+				name="cheapest_aircompany"
+				id="cheapest_aircompany"
+				class="form-control"
+				ng-model="detail.raw_value"
+				required
+			>
+				<option
+					ng-repeat="aircompany in page.aircompaniesList"
+					value="{{aircompany}}">{{aircompany}}
+				</option>
+			</select>
+		</div>
+
+	</div>
+
+	<button type="button"
+			class="btn btn-default"
+			ng-click="generatePageParamsFromPopularDirection(true)">
+		Сгенерировать
+	</button>
+
+	<button type="button"
+	        class="btn btn-primary"
+	        ng-click="createPromo(true)">
+		Создать промо предложение
+	</button>
+
+	<button type="button"
+			class="btn btn-primary"
+			ng-hide="!!page.special_offer"
+			ng-click="createSpecialOffer()">
+		Сделать спецпредложением
+	</button>
+</form>

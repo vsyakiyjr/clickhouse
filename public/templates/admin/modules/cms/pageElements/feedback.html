@@ -1,0 +1,110 @@
+<div class="cms-feedbackForm form-group-sm">
+	<div class="form-group">
+		<label for="feedbackTitle">Заголовок окна - форма</label>
+		<input type="text"
+		       id="feedbackTitle"
+		       name="feedbackTitle"
+		       ng-model="block.config.title"
+		       class="form-control"
+		/>
+	</div>
+	<div class="form-group">
+		<label for="feedbackText">Текст в окне</label>
+		<textarea
+				id="feedbackText"
+				name="feedbackText"
+				ng-model="block.config.text"
+				class="form-control"
+		>
+		</textarea>
+	</div>
+	<div class="form-group">
+		<label for="feedbackEmail">Заголовок поля "email"</label>
+		<textarea
+				id="feedbackEmail"
+				name="feedbackText"
+				ng-model="block.config.email_label"
+				class="form-control"
+		>
+		</textarea>
+	</div>
+	<div class="form-group">
+		<label for="feedbackMessageLabel">Заголовок поля "сообщение"</label>
+		<textarea
+				id="feedbackMessageLabel"
+				name="feedbackMessageLabel"
+				ng-model="block.config.message_label"
+				class="form-control"
+		>
+		</textarea>
+	</div>
+	<div class="form-group">
+		<label for="feedbackAttachmentLabel">Заголовок поля "Прикрепить файл"</label>
+		<textarea
+				id="feedbackAttachmentLabel"
+				name="feedbackAttachmentLabel"
+				ng-model="block.config.attachment_label"
+				class="form-control"
+		>
+		</textarea>
+	</div>
+	<div class="form-group">
+		<label for="feedbackButtonText">Текст на кнопке открытия формы</label>
+		<textarea
+				id="feedbackButtonText"
+				name="feedbackButtonText"
+				ng-model="block.config.button_text"
+				class="form-control"
+		>
+		</textarea>
+	</div>
+	<div class="form-group">
+		<label for="feedbackSuccessfulSubmit">Сообщение в окне отправке формы</label>
+		<textarea
+				id="feedbackSubmittingText"
+				name="feedbackSubmittingText"
+				ng-model="block.config.submitting_text"
+				class="form-control"
+		>
+		</textarea>
+	</div>
+	<div class="form-group">
+		<label for="feedbackSuccessfulSubmit">Сообщение при успешной отправке формы</label>
+		<textarea
+				id="feedbackSuccessfulSubmit"
+				name="feedbackSuccessfulSubmit"
+				ng-model="block.config.successful_submit_text"
+				class="form-control"
+		>
+		</textarea>
+	</div>
+	<strong>Куда отправить?</strong>
+	<div class="form-group"
+	     ng-repeat="email in block.config.emails">
+		<input class="form-control"
+		       required
+		       placeholder="Введите email, куда отправлять запрос"
+		       style="width: 80%; display: inline-block"
+		       ng-model="email.address"
+		       type="email"
+		/>
+
+		<button class="btn btn-sm btn-danger"
+		        ng-click="email.address && confirm('Вы уверены?') && block.config.emails.splice($index, 1)">
+			<span class="glyphicon glyphicon-remove">
+			</span>
+		</button>
+	</div>
+
+	<button class="btn btn-success btn-sm"
+	        ng-click="(block.config.emails = block.config.emails || []) && block.config.emails.push({address: ''})">
+		<span class="glyphicon glyphicon-plus"></span>
+	</button>
+
+	<div>
+		<strong>Превью блока:</strong>
+	</div>
+	<a class="btn-custom-feedback" av-feedback preview="true" config="{{ block.config }}">
+		{{ block.config.button_text }}
+	</a>
+</div>

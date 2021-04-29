@@ -1,0 +1,77 @@
+.category {
+    padding: 57px 0;
+    @include phone {
+        padding: 20px 0;
+    }
+    &-title {
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 37px;
+        margin-bottom: 47px;
+        @include phone {
+            font-size: 18px;
+            line-height: 33px;
+            margin-bottom: 15px;
+        }
+    }
+    .catalog-divisions {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap:39px;
+        @include ipad {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        @include tablet {
+            grid-template-columns: 1fr 1fr;
+        }
+        @include phone {
+            grid-template-columns: 1fr;
+        }
+    }
+    &-list {
+        &__head {
+            display: flex;
+            flex-direction: column;
+            a {
+                font-weight: 600;
+                margin: 14px 0 9px 0;
+            }
+            img {
+                object-fit: contain;
+                width: 100%;
+            }
+            @include phone {
+                flex-direction: column-reverse;
+                a {
+                    text-align: center;
+                    margin: 0 0 15px 0;
+                    font-size: 18px !important;
+                    line-height: 20px !important;
+                }
+                img {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            font-size: 12px;
+            line-height: 23px;
+        }
+        li {
+            a {
+                font-weight: 400;
+                transition: all .2s ease-in-out;
+                &:hover {
+                    transition: all .2s ease-in-out;
+                    color: $main;
+                }
+                @include phone {
+                    font-size: 12px;
+                    line-height: 30px;
+                }
+            }
+        }
+    }
+}

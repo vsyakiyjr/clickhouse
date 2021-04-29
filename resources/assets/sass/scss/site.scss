@@ -1,0 +1,72 @@
+// Import Bootstrap Compass integration
+//@import "bootstrap-compass";
+// Import custom Bootstrap variables
+//@import "bootstrap-variables";
+// Import Bootstrap for Sass
+//@import "bootstrap";
+@import "mixins_m7";
+@import "ma7veev";
+@import "classes_m7";
+
+.product-img {
+  img {
+    max-width: 100%;
+  }
+}
+
+#branding-content {
+  .title-content {
+    padding-top: 28px;
+  }
+  .access-content {
+    padding-top: 43px;
+  }
+  .member {
+    // padding-top:30px;
+  }
+  //padding-top:50px;
+}
+
+.product-logo {
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+
+.telphone {
+  width: 50%;
+  float: none !important;
+  display: inline-block;
+  margin-right: 60px;
+  a {
+    font-size: 24px;
+    margin-left: 2%;
+    white-space: nowrap;
+  }
+  img {
+    position: relative;
+    top: -6px;
+  }
+}
+
+.form-submit {
+  text-align: center;
+  float: none !important;
+  width: 100% !important;
+  input {
+    float: none !important;
+  }
+}
+
+.clear-both {
+  clear: both;
+}
+
+.location-block {
+  margin-bottom: 10px;
+}
+.navbar{
+  &Section{
+    @extend .section;
+    background-color: #fff;
+  }
+}

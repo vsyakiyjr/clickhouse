@@ -1,0 +1,69 @@
+.main-carousel {
+	position: relative;
+	text-align: center;
+
+	min-height: 600px;
+
+	.main-carousel-container {
+
+		&.horizontal {
+			height: 600px;
+		}
+
+		&.vertical {
+			height: 548px;
+		}
+
+		.slide {
+			position: absolute;
+			top:    0px;
+			left:   0px;
+			right:  0px;
+			bottom: 0px;
+			//background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	}
+
+
+
+	.main-carousel-overlay {
+		position: absolute;
+		background: rgba(45, 52, 54, 0.4);
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+
+	.main-carousel-text {
+		position: absolute;
+		top: calc(50% - 50px);
+
+		.row-1,
+		.row-2 {
+			text-transform: uppercase;
+			color: #fff;
+		}
+
+		left: 0;
+		right: 0;
+
+		.row-1 {
+			font-weight: bold;
+			font-size: 48px;
+			letter-spacing: 3px;
+		}
+
+		.row-3 {
+			margin-top: 50px;
+		}
+	}
+}
+//
+@media all and (max-width: $screen-md) {
+	.main-carousel {
+		min-height: 548px;
+	}
+}

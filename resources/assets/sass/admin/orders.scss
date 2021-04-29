@@ -1,0 +1,56 @@
+
+@media all and (max-width: 414px) {
+	.orders-page {
+		.order__heading {
+			.subheading {
+				display: block;
+				margin-left: 0 !important;
+			}
+		}
+
+		.order__total-info {
+			flex-flow: column;
+
+			.buttons {
+				text-align: left;
+			}
+		}
+
+		.admin-order.order {
+			.order-client {
+				flex-flow: column;
+			}
+		}
+	}
+}
+
+.order__total-info {
+	.buttons {
+		text-align: right;
+	}
+
+	.order-total-rows {
+		width: 100%;
+	}
+
+	.order-total-row {
+		margin-bottom: 5px;
+		display: flex;
+		width: 100%;
+		padding: 5px;
+		justify-content: space-between;
+
+		font-size: 14px;
+
+		.value {
+			font-weight: 500;
+			text-align: right;
+		}
+	}
+}
+
+.order__products-sort {
+	.tab-selector {
+		width: 100%;
+	}
+}

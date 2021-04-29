@@ -1,0 +1,167 @@
+<form name="pageSettings" class="page-settings">
+	<h4>Настройки</h4>
+
+	<div class="form-group">
+		<label class="control-label" for="force_noindex">В индексе гугла</label>
+		<input type="checkbox"
+		       id="force_noindex"
+		       ng-readonly="editMode == 'history'"
+		       name="enabled"
+		       ng-model="page.force_noindex"
+		       style="visibility: hidden; position: absolute;"
+		       ng-checked="page.include_to_index | boolean" />
+		<span class="btn btn-sm"
+		      ng-click="page.include_to_index = !(page.include_to_index | boolean)"
+		      ng-class="(page.include_to_index | boolean) ? 'btn-success' : 'btn-danger'">
+			<span class="fa" ng-class="(page.include_to_index | boolean) ? 'fa-toggle-on' : 'fa-toggle-off'"></span>
+		</span>
+	</div>
+	<div class="form-group">
+		<label class="control-label" for="pageEnabled">Страница активна</label>
+		<input type="checkbox"
+		       id="pageEnabled"
+		       ng-readonly="editMode == 'history'"
+		       name="enabled"
+		       ng-model="page.enabled"
+		       style="visibility: hidden; position: absolute;"
+		       ng-checked="page.enabled | boolean" />
+		<span class="btn btn-sm"
+		      ng-click="page.enabled = !(page.enabled | boolean)"
+		      ng-class="(page.enabled | boolean) ? 'btn-success' : 'btn-danger'">
+			<span class="fa" ng-class="(page.enabled | boolean) ? 'fa-toggle-on' : 'fa-toggle-off'"></span>
+		</span>
+	</div>
+
+	<div class="form-group" ng-show="page.parent_directory == '/news'">
+		<label class="control-label" for="pageDate">Дата новости</label>
+		<input type="text"
+		       id="pageDate"
+		       class="form-control"
+		       style="width: 100px"
+		       ui-date-picker
+		       ng-readonly="editMode == 'history'"
+		       name="news_date"
+		       ng-model="page.news_date" />
+	</div>
+
+	<div class="form-group" ng-class="{'has-error': pageSettings.title.$invalid}">
+		<label class="control-label" for="pageTitle">Title</label>
+		<input type="text"
+		       name="title"
+		       ng-model="page.title"
+		       maxlength="255"
+		       ng-readonly="editMode == 'history'"
+		       required=""
+		       class="form-control"
+		       id="pageTitle" />
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageSettings.breadcrumbs_title.$invalid}">
+		<label class="control-label" for="pageBreadcrumbs">Название для хлебных крошек</label>
+		<input type="text"
+		       name="breadcrumbs_title"
+		       ng-readonly="editMode == 'history'"
+		       ng-model="page.breadcrumbs_title"
+		       maxlength="255"
+		       class="form-control"
+		       id="pageBreadcrumbs" />
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageSettings.description.$invalid}">
+		<label class="control-label" for="pageDescription">Description</label>
+		<input type="text"
+		       name="description"
+		       maxlength="1000"
+		       ng-model="page.description"
+		       ng-readonly="editMode == 'history'"
+		       required
+		       class="form-control"
+		       id="pageDescription" />
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageSettings.keywords.$invalid}">
+		<label class="control-label" for="pageDescription">Keywords</label>
+		<textarea type="text"
+		       		name="keywords"
+		       		ng-model="page.keywords"
+		       		ng-readonly="editMode == 'history'"
+		       		class="form-control"
+							id="pageKeywords"
+		></textarea>
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageSettings.text_preview.$invalid}">
+		<label class="control-label" for="pageTextPreview">Краткий текст</label>
+
+		<textarea name="text_preview"
+				  ng-model="page.text_preview"
+				  ng-readonly="editMode == 'history'"
+				  class="form-control"
+				  id="pageTextPreview"
+		></textarea>
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageSettings.alias.$invalid}">
+		<label class="control-label" for="pageAlias">Alias</label>
+		<input type="text"
+		       required
+		       maxlength="255"
+		       name="alias"
+		       ng-model="alias"
+		       ng-readonly="editMode == 'history'"
+		       ng-disabled="page.alias === 'index'"
+		       ng-pattern="/^[0-9a-z-_а-яА-ЯЁё]+$/i"
+		       ng-blur="checkAlias(pageSettings.alias, page, 'page')"
+		       class="form-control"
+		       id="pageAlias" />
+	</div>
+	<div class="form-group">
+		<label class="control-label" for="pageImage">Картинка (размер: 200x152)</label>
+		<img ng-src="{{page.image_path || page.image}}"
+		     ng-hide="page.image == 'remove'"
+		     ng-show="page.image_path"
+		     alt="Картинка к странице"
+		     width="150"/>
+		<input type="file"
+		       ng-readonly="editMode == 'history'"
+		       name="image"
+		       id="pageImage"
+		       fileread="page.image"
+		       accept="image/*" />
+		<span class="btn btn-default"
+		      uib-tooltip="Убрать картинку"
+		      ng-disabled="!page.image_path || page.image == 'remove'"
+		      ng-click="page.image = 'remove' ">
+			<span class="glyphicon glyphicon-remove"></span> Убрать картинку
+		</span>
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageSettings.priority.$invalid}">
+		<label class="control-label" for="pagePriority">Приоритет в директории</label>
+		<input type="number"
+		       class="form-control"
+		       min="0"
+		       step="1"
+		       ng-readonly="editMode == 'history'"
+		       id="pagePriority"
+		       name="priority"
+		       ng-model="page.priority"/>
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageSettings.sitemap_priority.$invalid}">
+		<label class="control-label" for="sitemap_priority">Приоритет в Sitemap</label>
+		<input type="number"
+		       class="form-control"
+		       min="0.01"
+		       ng-readonly="editMode == 'history'"
+		       max="1"
+		       step="0.01"
+		       id="sitemap_priority"
+		       name="sitemap_priority"
+		       ng-model="page.sitemap_priority"/>
+	</div>
+	<div class="form-group" ng-class="{'has-error': pageSettings.products.$invalid}">
+		<label class="control-label" for="sitemap_priority">Релевантные продукты</label>
+		<div class="form-group" ng-repeat="product in page.products">
+			<label>Id</label>
+			<input class="form-control"
+				   ng-model="product.id"/>
+			<label>Порядок</label>
+			<input class="form-control"
+				   ng-model="product.pivot.order"/>
+		</div>
+	</div>
+</form>

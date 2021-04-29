@@ -1,0 +1,154 @@
+.items-with-cart-container{
+	padding: 50px 100px;
+
+	display: flex;
+
+	justify-content: space-between;
+
+	.block-title {
+		margin-top: 0;
+		margin-bottom: 20px;
+		font-weight: 500;
+		font-size: 24px;
+		color: #828282;
+		text-align: left;
+	}
+
+	.left-part {
+		max-width: 770px;
+
+		.items {
+			display: grid;
+
+			grid-column-gap: 30px;
+			grid-row-gap: 30px;
+			grid-template-columns: repeat(4, 1fr);
+		}
+
+	}
+
+	&.ikea-family {
+		padding-bottom: 0;
+
+		> .left-part {
+			flex: 1;
+		}
+	}
+
+	.right-part {
+		width: 330px;
+
+		.cart {
+			margin-top: 95px;
+		}
+
+		#sticky-wrapper {
+			position: absolute;
+
+			> .attach-sticky-here {
+				width: auto !important;
+			}
+		}
+
+		.sticky-wrapper.is-sticky {
+			.cart {
+				margin-top: 0;
+			}
+		}
+	}
+
+	.showcase-carousel {
+		&.owl-theme .owl-nav {
+			[class*=owl-]{
+				color: $text-grey;
+
+				&:hover {
+					color: darken($text-grey, 10%);
+				}
+
+				background: white;
+				display: inline-flex;
+				width: 40px;
+				height: 40px;
+				justify-content: center;
+				align-items: center;
+				font-size: 24px;
+				border-radius: 50%;
+			}
+
+			.owl-next {
+				right: -50px;
+				width: 40px;
+			}
+
+			.owl-prev {
+				left: -50px;
+			}
+		}
+
+
+		> .owl-stage-outer {
+			> .owl-stage {
+				display: flex;
+				justify-content: stretch;
+				width: 100% !important;
+
+				> .owl-item {
+					margin: 0 30px 0 0;
+					width: 170px !important;
+					padding: 0;
+					height: unset;
+
+					.product-card {
+						height: 100%;
+					}
+				}
+
+			}
+		}
+	}
+}
+
+@media all and (max-width: $screen-md) {
+	.breadcrumbs {
+		flex-wrap: wrap;
+	}
+
+	.items-with-cart-container {
+		padding: 10px;
+		flex-flow: column;
+
+		.left-part .items {
+			justify-content: space-between;
+			grid-column-gap: 10px;
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.right-part {
+			.cart {
+				display: none;
+			}
+		}
+	}
+
+}
+
+@media all and (max-width: $screen-xs) {
+	.items-with-cart-container {
+		padding: 20px 5px;
+	}
+
+	.showcase-carousel {
+		> .owl-stage-outer {
+			> .owl-stage {
+
+				> .owl-item {
+					height: auto;
+					padding: 0 5px 5px;
+
+				}
+
+			}
+		}
+	}
+}

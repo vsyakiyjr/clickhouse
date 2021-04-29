@@ -1,0 +1,21 @@
+<div class="ui-simple-pagination">
+
+	<div uib-pagination
+		 class="pagination-sm"
+		 ng-model="currentPage"
+		 ng-change="pageChanged()"
+
+		 ng-show="totalItems > itemsPerPage"
+
+		 total-items="totalItems"
+		 items-per-page="itemsPerPage"
+		 max-size="11"
+
+		 boundary-links="true"
+		 boundary-link-numbers="true"
+		 num-pages="totalPages"
+		 previous-text="&lsaquo;" first-text="&laquo;"
+		 next-text="&rsaquo;" last-text="&raquo;"
+	></div>
+
+</div>

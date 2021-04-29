@@ -1,0 +1,111 @@
+<div class="modal-header">
+	<modal-close></modal-close>
+	<h3 class="modal-title">
+		Добавить новый редирект
+	</h3>
+</div>
+<div class="modal-body">
+	<div class="cms-add-redirect-modal-form form-horizontal form-group-sm">
+		<div class="form-group">
+			<label class="control-label" for="alias">Алиас</label>
+			<input type="text"
+			       name="alias"
+			       ng-model="redirect.alias"
+			       required=""
+			       autofocus
+			       class="form-control"
+			       id="alias"
+			/>
+		</div>
+		<div class="form-group folder-container search">
+			<label class="control-label">Страница</label>
+			<a ng-href="{{redirect.page.fullpath}}"
+			   target="_blank"
+			   rel="nofollow"
+			   ng-show="redirect.page">
+				{{redirect.page.title}}
+			</a>
+			<form class="cms-search-form clearfix"
+			      name="pageSearch"
+			      ng-submit="searchWithinTree(searchQuery)">
+				<div class="pull-left">
+					<input class="form-control cms-search"
+					       id="cms-search"
+					       type="text"
+					       required
+					       ng-model="searchQuery"
+					       ng-disabled="searchIsActive"
+					       placeholder="Поиск страницы"
+					/>
+				</div>
+				<button type="submit"
+				        class="btn btn-success btn-sm pull-right"
+				        ng-disabled="pageSearch.$invalid || searchIsActive">
+					Поиск
+				</button>
+			</form>
+			<h4 ng-show="searchIsActive">Поиск страниц... <span class="fa fa-spinner fa-gears"></span></h4>
+
+			<div class="cms-search-result-container">
+				<div class="cms-search-result directories">
+					<div class="folder-container tree"
+					     ng-repeat="tree in searchResults.directories"
+					     host="host"
+					     site-tree="tree">
+					</div>
+				</div>
+				<div class="cms-search-result pages">
+					<page-in-directory ng-repeat="page in searchResults.pages"
+					                   select="selectPage"
+					                   page="page">
+					</page-in-directory>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="form-group">
+			<label class="control-label">Тип совпадения</label>
+			<div uib-dropdown="">
+				<button class="btn btn-sm btn-default" uib-dropdown-toggle="">
+					{{redirect.match_type}}
+					<span class="fa fa-caret-down"></span>
+				</button>
+				<ul class="dropdown-menu" uib-dropdown-menu>
+					<li ng-repeat="(type, name) in matchTypes"
+					    ng-class="{'active': redirect.match_type == type}">
+						<a href="#"
+						   ng-click="redirect.match_type = type">
+							{{name}}
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label"
+			       for="comment">Комментарий</label>
+			<input type="text"
+			       name="comment"
+			       ng-model="redirect.comment"
+			       required=""
+			       class="form-control"
+			       id="comment"
+			/>
+		</div>
+
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button"
+	        class="btn btn-success"
+	        ng-click="ok()">
+		Сохранить
+	</button>
+	<button type="button"
+	        class="btn btn-danger"
+	        ng-click="cancel()">
+		Отмена
+	</button>
+</div>

@@ -1,0 +1,51 @@
+.account-page {
+	padding: 40px 60px;
+	margin-top: 0;
+
+	.orderHeader {
+		font-size: 24px;
+		padding: 13px 26px;
+	}
+
+	.account_page__inner {
+		flex-flow: column;
+
+		.logout-link {
+			display: block;
+			font-size: 14px;
+			font-weight: normal;
+			text-transform: none;
+			text-decoration: underline;
+			margin-bottom: 0;
+			margin-top: 30px;
+
+			&, > span {
+				color: $text-grey;
+			}
+
+			text-align: center;
+		}
+	}
+}
+
+@media all and (max-width: $screen-md) {
+	.account-page {
+		padding: 10px;
+
+		.input_field__button {
+			text-align: center;
+		}
+
+		.info_page_title {
+			text-align: center;
+			text-transform: uppercase;
+			font-weight: normal;
+			font-size: 16px;
+			margin-top: 15px;
+			margin-bottom: 30px;
+		}
+
+
+	}
+
+}

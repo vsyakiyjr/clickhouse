@@ -1,0 +1,30 @@
+<div class="toolbar-item history" ng-show="history.length > 0" uib-dropdown="">
+	<button class="btn btn-link" uib-dropdown-toggle>
+		История
+		<span class="glyphicon glyphicon-chevron-down"></span>
+	</button>
+
+	<span ng-show="historyIndex == 'actual'">Актуальное состояние</span>
+	<span ng-show="historyIndex != 'actual'">
+		№{{historyIndex + 1}} от {{history[historyIndex].updated_at | formatDate: 'd F H:i:s'}} ({{history[historyIndex].updated_by.last_name}})
+	</span>
+
+	<ul class="dropdown-menu" uib-dropdown-menu="">
+		<li ng-repeat="historyItem in history | orderBy: 'updated_at'"
+		    ng-class="$index == historyIndex ? 'active' : ''">
+			<a ng-click="loadHistoryEntry($index)">
+				№{{$index + 1}} от {{historyItem.updated_at | formatDate: 'd F H:i'}} ({{historyItem.updated_by.last_name}})
+			</a>
+		</li>
+		<li ng-class="'actual' == historyIndex ? 'active' : ''">
+			<a ng-click="loadHistoryEntry('actual')">
+				Актуальное состояние
+			</a>
+		</li>
+	</ul>
+
+	<label>
+		<input type="checkbox" ng-model="useDiff">
+		Просмотр разницы
+	</label>
+</div>

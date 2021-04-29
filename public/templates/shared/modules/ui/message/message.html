@@ -1,0 +1,11 @@
+<div class="message alert"
+	 ng-show="tblMessage.active"
+	 ng-class="tblMessageClass()"
+>
+	<button type="button" class="close" ng-click="hideMessage()"><span>&times;</span></button>
+	<strong ng-if="tblMessage.type == 'error'">Ошибка!</strong>
+	<span ng-if="tblMessage.array == false" ng-bind-html="tblMessage.message"></span>
+	<ul ng-if="tblMessage.array == true">
+		<li ng-repeat="message in tblMessage.message track by $index" ng-bind="message"></li>
+	</ul>
+</div>

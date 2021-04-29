@@ -1,0 +1,23 @@
+<div class="modal-header">
+	<modal-close ng-if="config.showTitleClose"></modal-close>
+	<h3 class="modal-title">
+		<span ng-class="config.titleIcon"></span>
+		<span ng-bind="title"></span>
+	</h3>
+</div>
+<div class="modal-body">
+
+	<div class="content" ng-include="templateUrl" ng-if="templateUrl"></div>
+	<div class="content" ng-bind="text" ng-if="text && !templateUrl"></div>
+	<div class="content" ng-bind-html="html" ng-if="html && !templateUrl"></div>
+
+</div>
+<div class="modal-footer">
+	<button type="button"
+			class="btn"
+			ng-repeat="button in buttons"
+			ng-class="button.class"
+			ng-click="buttonClick(button)"
+			ng-bind="button.text"
+	></button>
+</div>

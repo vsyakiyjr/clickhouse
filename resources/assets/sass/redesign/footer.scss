@@ -1,0 +1,21 @@
+.footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 15px;
+
+	background: $light-grey;
+	border-top: 1px solid $text-grey;
+
+	.header_socials__list {
+		margin: 0;
+	}
+}
+
+/* MOBILE */
+@media all and (max-width: $screen-md) {
+	.footer {
+		display: none;
+	}
+}

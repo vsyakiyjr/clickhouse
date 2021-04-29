@@ -1,0 +1,15 @@
+@media all and (max-width: 414px) {
+	.information-page {
+		.contacts-tab {
+			.contacts-tab-form {
+				flex-flow: column;
+			}
+
+			.contacts-info {
+				.v-input {
+					margin-top: 0;
+				}
+			}
+		}
+	}
+}

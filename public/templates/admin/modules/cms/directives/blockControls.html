@@ -1,0 +1,62 @@
+<div class="position-control-container">
+	<div class="position-control inline-buttons">
+
+		<button class="btn btn-danger round-button block-position remove"
+		        uib-tooltip="Удалить элемент"
+		        tooltip-append-to-body="true"
+		        tooltip-popup-delay="500"
+		        ng-click="removeElement($index)">
+			<span class="glyphicon glyphicon-remove"></span>
+		</button>
+
+		<button class="btn round-button block-position bind reset"
+		        uib-tooltip="block.position == '' ? 'Приоритет не задан' : 'Сбросить приоритет'"
+		        tooltip-popup-delay="500"
+		        tooltip-append-to-body="true"
+		        ng-class="(getPosition($index) == '') ? 'btn-warning' : 'btn-default'"
+		        ng-click="setPosition($index, '')">
+			<span class="glyphicon glyphicon-share-alt"></span>
+		</button>
+
+		<button class="btn round-button block-position bind to-top"
+		        uib-tooltip="{{getPosition($index) == 'top' ? 'Всегда вверху других блоков' : 'Поставить наверх других блоков'}}"
+		        tooltip-popup-delay="500"
+		        tooltip-append-to-body="true"
+		        ng-class="getPosition($index) == 'top'? 'btn-warning' : 'btn-default'"
+		        ng-click="setPosition($index, 'top')">
+			<span class="glyphicon glyphicon-arrow-up"></span>
+		</button>
+
+		<button class="btn round-button block-position bind to-bottom"
+		        uib-tooltip="{{getPosition($index) == 'bottom' ? 'Всегда внизу других блоков' : 'Поставить вниз других блоков'}}"
+		        tooltip-popup-delay="500"
+		        tooltip-append-to-body="true"
+		        ng-class="getPosition($index) == 'bottom' ? 'btn-warning' : 'btn-default'"
+		        ng-click="setPosition($index, 'bottom')">
+			<span class="glyphicon glyphicon-arrow-down"></span>
+		</button>
+
+		<button class="btn round-button block-position hideElement"
+		        uib-tooltip="{{(block.visible | boolean) ? 'Скрыть' : 'Показать'}} элемент"
+		        tooltip-popup-delay="500"
+		        tooltip-append-to-body="true"
+		        ng-click="block.visible = !(block.visible | boolean)"
+		        ng-class="(block.visible | boolean) ? 'btn-success' : 'btn-danger'">
+			<span class="glyphicon"
+			      ng-class="(block.visible | boolean) ? 'glyphicon-eye-open' : 'glyphicon-eye-close'">
+			</span>
+		</button>
+	</div>
+	<div class="position-control block-buttons">
+		<button class="btn btn-default round-button block-position up"
+		        ng-click="moveElement($index, 'up')"
+		        ng-hide="$first">
+			<span class="glyphicon glyphicon-chevron-up"></span>
+		</button>
+		<button class="btn btn-default round-button block-position down"
+		        ng-hide="$last"
+		        ng-click="moveElement($index, 'down')">
+			<span class="glyphicon glyphicon-chevron-down"></span>
+		</button>
+	</div>
+</div>

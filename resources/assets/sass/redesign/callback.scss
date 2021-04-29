@@ -1,0 +1,100 @@
+#callbackModal {
+	.label {
+		color: black;
+		margin-bottom: 20px;
+	}
+
+	input {
+		border-radius: 20px;
+		color: black;
+		font-weight: bold;
+		font-size: 18px;
+	}
+
+	.callback-header {
+		font-weight: normal;
+		font-size: 18px;
+	}
+
+	.submit {
+		font-weight: bold;
+		font-size: 14px;
+	}
+
+	.close {
+		color: $text-grey;
+		font-weight: 400;
+		font-size: 14px;
+	}
+}
+
+/* MOBILE */
+@media all and(max-width: $screen-md) {
+	.grey-bar {
+		.left-part > .callback {
+			width: 100%;
+			position: absolute;
+			top: 7px;
+		}
+	}
+
+	body.modal-open {
+		._show_1e.wrap_mW {
+			z-index: 2 !important;
+		}
+	}
+
+
+	#callbackMobile {
+		.modal-content {
+			background: none;
+			margin-bottom: 115px;
+
+			.modal-body {
+				border-radius: 12px;
+
+				.phone,
+				> .callback {
+					font-size: 18px;
+					background: #fff;
+					color: #0076ff;
+					text-align: center;
+					padding: 16px 10px;
+
+					&:first-child {
+						border-radius: 12px 12px 0 0;
+					}
+
+					&:last-child {
+						border-radius:  0 0 12px 12px;
+					}
+				}
+
+				.phone {
+					a {
+						text-decoration: none;
+						font-size: 18px;
+						font-weight: bold;
+					}
+				}
+
+				> .callback {
+					font-size: 18px;
+				}
+			}
+
+			.modal-footer {
+				display: block;
+				padding: 16px 0;
+				border-radius: 12px!important;
+				margin: 0 10px 15px;
+				text-align: center;
+				background-color: #fff;
+				color: #0076ff;
+				font-size: 18px;
+				font-weight: 600;
+				font-family: sans-serif;
+			}
+		}
+	}
+}

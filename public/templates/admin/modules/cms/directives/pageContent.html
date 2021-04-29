@@ -1,0 +1,23 @@
+<div class="cms-page-content">
+	<new-block type="page" add-block="addBlock"></new-block>
+	<div class="content-block-container">
+		<div class="content-block" ng-repeat="block in content.block">
+			<div class="content-block-title">Блок № {{$index + 1}}, тип <i>&laquo;{{block.label}}&raquo;</i>, {{block.visible ? 'показывается' : 'скрыт'}} на странице</div>
+			<label>Заголовок блока на странице:</label>
+			<h2 class="cms-textblock-title cms-editable"
+				ck-editor=""
+				inline="true"
+				placeholder="Заголовок"
+				ng-model="block.title"
+				contenteditable="true">
+			</h2>
+			<label ng-hide="block.type == 'feedback'">Содержимое:</label>
+			<div class="cms-block cms-editable"
+				 ng-include="'/templates/admin/modules/cms/pageElements/' + availablePageElements[block.type]['template']"
+				 ng-class="block.visible ? '': 'cms-invisible'">
+			</div>
+			<block-controls></block-controls>
+		</div>
+	</div>
+	<new-block type="page" add-block="addBlock" ng-show="content.block.length > 2"></new-block>
+</div>

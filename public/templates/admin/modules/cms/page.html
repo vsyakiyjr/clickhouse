@@ -1,0 +1,15 @@
+<page-translations page-id="page.id"></page-translations>
+
+<!-- Page setting START -->
+<page-popular-directions-promo-settings ng-if="page.popular_direction_promo"></page-popular-directions-promo-settings>
+<page-popular-directions-settings       ng-if="page.popular_direction"></page-popular-directions-settings>
+<page-special-offers-settings           ng-if="page.special_offer"></page-special-offers-settings>
+<page-low-fare-directions-settings      ng-if="page.low_fare_directions"></page-low-fare-directions-settings>
+<page-settings></page-settings>
+<!-- Page setting END -->
+<!-- Page contents START -->
+<div class="page">
+	<h4>Контент</h4>
+	<page-content content="page.content" host="{{page.host}}"></page-content>
+</div>
+<!-- Page contents END -->

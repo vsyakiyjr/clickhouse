@@ -1,0 +1,11 @@
+<div class="folder-label" ng-class="isActivePage(page.id) ? 'active' : ''" ng-click="setCurrentPage(page, tree)">
+	<span class="glyphicon glyphicon-file"
+	      ng-class="page.enabled ? 'text-success' : 'text-danger'"></span>
+	<span class="fa fa-google" ng-class="!page.include_to_index ? 'text-danger' : 'text-success'"></span>
+
+	{{page.title}}
+
+	<span class="folder-alias">{{page.alias}}</span>
+	<span class="folder-created_at">{{page.created_at | formatDate: 'd.m.Y H:i'}} (ID: {{page.id}})</span>
+	<!--<span class="glyphicon glyphicon-pencil folder-editPage"></span>-->
+</div>

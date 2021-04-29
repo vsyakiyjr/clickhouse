@@ -1,0 +1,287 @@
+.content_wrap__info_page {
+	margin: 90px 0;
+	//height: 100%;
+	display: flex;
+
+	&.account-page {
+		flex-flow: column;
+
+		.account_page__inner {
+			max-width: 310px;
+			margin: 0;
+
+			.account_page_item {
+				width: 100%;
+			}
+		}
+	}
+
+	.content_item__sidebar {
+
+		.sidebar {
+			background: #fff;
+			border: 1px solid $light-grey;
+		}
+	}
+
+	&.info {
+		.calendar-widget {
+			display: none;
+		}
+	}
+
+	a.sidebarItem {
+		&:hover {
+			background: $light-grey;
+		}
+
+		&.login {
+			display: none;
+		}
+
+		&.sidebarItem__info.d-flex{
+			height: 35px;
+
+			&:not(:last-child){
+				border-bottom: 1px solid $light-grey;
+			}
+		}
+
+		&.active {
+			background: $light-grey;
+		}
+	}
+
+	.info_page_title {
+		font-size: 24px;
+		color: $text-grey;
+		margin-bottom: 10px;
+	}
+
+	.info_page_text {
+		max-width: 830px;
+		color: #2D3436;
+		font-size: 14px;
+		line-height: 21px;
+	}
+
+	.content_info_page {
+		padding: 0 25px;
+	}
+
+	.calendar-widget {
+		width: 155px;
+	}
+
+	.content_item__catalog {
+		display: flex;
+		justify-content: space-between;
+		padding-right: 116px;
+	}
+
+	.contact_inner_wrap {
+		padding: 0 50px;
+	}
+
+	.contact_list {
+		position: relative;
+		padding: 0 0 0 35px;
+		margin: 0 0 25px;
+		list-style: none;
+
+		li {
+			margin-bottom: 15px;
+			white-space: nowrap;
+
+			a,
+			span {
+				font-size: 14px;
+				font-weight: 500;
+				color: $body-black;
+				line-height: 21px;
+			}
+		}
+	}
+
+	.contactBlock {
+		margin-top: 30px;
+	}
+
+	.contact_item__right {
+		margin-top: 65px;
+	}
+
+	.icons-mobile {
+		display: none;
+	}
+
+	.contact_item.inst {
+		display: none;
+	}
+
+	.go-to-info-mobile {
+		display: none;
+	}
+}
+
+@media all and (max-width: $screen-md) {
+	.content_wrap__info_page {
+		flex-flow: column;
+		align-items: center;
+		justify-content: flex-start;
+		height: 100%;
+		display: flex;
+		padding: 10px;
+		background: #fff;
+		margin: 0;
+		position: relative;
+
+		.go-to-info-mobile {
+			display: inline-block;
+			position: absolute;
+			left: 30px;
+			color: $text-grey;
+		}
+
+		&.info {
+			.go-to-info-mobile {
+				display: none;
+			}
+
+			.calendar-widget {
+				display: block;
+			}
+
+			.content_info_page {
+				h1 {
+					display: none;
+				}
+			}
+
+			.content_item__sidebar {
+				position: static;
+				display: block;
+				width: 100%;
+				height: auto;
+
+				margin-top: 40px;
+
+				.sidebar {
+					border: none;
+					height: auto;
+
+					a.sidebarItem {
+						border: none;
+						&, > span {
+							font-size: 16px;
+						}
+
+						font-weight: normal;
+						text-transform: uppercase;
+						margin-bottom: 20px;
+
+						&:hover,
+						&:active {
+							background: white;
+						}
+
+						&.login {
+							display: block;
+							font-size: 12px;
+							font-weight: normal;
+							text-transform: none;
+							text-decoration: underline;
+							margin-bottom: 0;
+							margin-top: 40px;
+
+							&, > span {
+								color: $text-grey;
+							}
+
+							text-align: center;
+						}
+					}
+				}
+			}
+
+			.content_item.content_item__catalog {
+				display: none;
+			}
+		}
+
+		.content_item__catalog {
+			padding-right: 0;
+
+			flex-flow: column;
+
+			.content_info_page {
+				h1 {
+					text-align: center;
+					text-transform: uppercase;
+					font-weight: normal;
+					font-size: 16px;
+					margin-bottom: 30px;
+				}
+
+				padding: 10px 50px;
+
+				.info_page_text {
+					text-align: justify;
+				}
+
+				.icons-mobile {
+					display: block;
+					text-align: center;
+					margin-bottom: 15px;
+				}
+
+				.contact_list {
+					padding: 0;
+					text-align: center;
+
+					li {
+						&,a{
+							font-weight: normal;
+						}
+					}
+
+					&.contact_phones:before {
+						display: none;
+					}
+
+					&.contact_mail{
+						&:before {
+							display: inline-block;
+							position: static;
+						}
+					}
+
+					&.contact_viber {
+						display: none;
+					}
+
+					&.contact_work_time {
+						display: none;
+					}
+
+				}
+
+				.contact_item__right {
+					display: none;
+				}
+
+				.contact_item.inst {
+					display: block;
+					text-align: center;
+				}
+
+			}
+		}
+
+		&.deliverance {
+			.calendar-widget {
+				display: none;
+			}
+		}
+	}
+}

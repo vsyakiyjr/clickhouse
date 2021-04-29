@@ -1,0 +1,67 @@
+.admin {
+	&Logo {
+		width: 160px;
+	}
+
+}
+
+.main-page-settings {
+	.settings {
+		padding: 40px;
+		background: white;
+		margin: 40px 0;
+
+		.title {
+			font-size: 24px;
+			font-weight: 500;
+			margin-bottom: 30px;
+		}
+	}
+
+	.control {
+		font-size: 14px;
+		display: inline-block;
+		margin-right: 5px;
+		cursor: pointer;
+		color: #828282;
+
+		&:hover {
+			color: darken(#828282, 10%);
+		}
+	}
+
+	.slides-container {
+		display: flex;
+
+		.slides-mobile,
+		.slides-desktop {
+			flex: 1;
+		}
+
+		.slides-desktop {
+			border-right: 1px solid #828282;
+			padding-right: 50px;
+			margin-right: 50px;
+		}
+
+		.slide {
+			display: flex;
+			margin-bottom: 20px;
+
+			img {
+				margin-right: 10px;
+			}
+
+			.controls-and-name {
+				.name {
+					font-size: 18px;
+					font-weight: 500;
+					margin-bottom: 10px;
+				}
+
+			}
+		}
+	}
+
+}
+

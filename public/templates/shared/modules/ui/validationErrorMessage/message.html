@@ -1,0 +1,6 @@
+<div class="validation-error-message " ng-class="class" ng-show="messages">
+	<p ng-repeat="message in messages">
+		<span ng-bind="message.text"></span>
+		<a href="" ng-if="message.link" ng-click="linkAction(message)" ng-class="message.link.class" ng-bind="message.link.text"></a>
+	</p>
+</div>

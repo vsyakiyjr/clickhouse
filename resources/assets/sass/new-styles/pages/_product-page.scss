@@ -1,0 +1,551 @@
+.breadcrumbs {
+  a {
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 15px;
+    color: #828282;
+  }
+  margin-bottom: 32px;
+}
+
+.product-page {
+  padding: 51px 0 230px 120px;
+
+  @include ipad {
+    padding: 51px 0 120px 0;
+  }
+
+  @include phone {
+    padding: 14px 0px 37px 0px;
+  }
+
+  &__wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    @include ipad {
+      grid-template-columns: 1fr;
+    }
+    @include phone {
+      gap: 16px;
+    }
+  }
+
+  &__slider {
+    display: grid;
+    grid-template-columns: 307px 307px;
+    gap: 35px;
+    margin-bottom: -15px;
+    img {
+      object-fit: contain;
+      max-width: 307px;
+      width: 100%;
+    }
+    @include ipad {
+      grid-template-columns: 1fr 1fr 1fr;
+      img {
+        max-width: 230px;
+        gap: 25px;
+      }
+    }
+    @include phone {
+      display: flex;
+      justify-content: space-between;
+      grid-template-columns: 1fr;
+      gap: 0;
+      overflow: scroll;
+      margin: 0;
+      img {
+        max-width: 350px;
+        width: unset;
+      }
+    }
+    @include mini {
+      img {
+        max-width: 290px;
+      }
+    }
+  }
+  &__more {
+    display: block;
+    font-size: 12px;
+    line-height: 15px;
+    color: #808080;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    background: none;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-bottom: 29px;
+    border-bottom: 0.5px dashed #808080;
+    transition: all 0.2s ease-in-out;
+    min-height: 17px;
+    &:hover {
+      transition: all 0.2s ease-in-out;
+      border: 0;
+      color: $main;
+    }
+  }
+  &__about {
+    @include phone {
+      overflow: hidden;
+    }
+    &-inner {
+      max-width: 649px;
+      width: 100%;
+      @include phone {
+        display: none;
+      }
+    }
+    &-inner.show {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    &-desc {
+      font-size: 14px;
+      line-height: 25px;
+      margin-bottom: 53px;
+      @include phone {
+        font-size: 12px;
+        line-height: 25px;
+        margin-bottom: 24px;
+      }
+    }
+    &-info {
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      @include phone {
+        flex-direction: column;
+        justify-content: center;
+        position: unset;
+      }
+    }
+    &-mobile-btn {
+      display: none;
+      text-align: center;
+      font-size: 11px;
+      line-height: 13px;
+      color: #828282;
+      margin-bottom: 36px;
+      cursor: pointer;
+      svg {
+        margin-left: 5px;
+        width: 7px;
+        height: 5px;
+        path {
+          fill: #82828280;
+        }
+      }
+      @include phone {
+        display: block;
+      }
+    }
+  }
+  &__select {
+    &:hover {
+      span {
+        transition: all 0.2s ease-in-out;
+        font-weight: 600;
+        color: $main;
+      }
+    }
+    span {
+      display: block;
+      min-width: 112px;
+      max-width: 112px;
+      border-radius: 15px;
+      border: 2px solid $main;
+      font-size: 12px;
+      line-height: 15px;
+      padding: 7px 29px 8px 14px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      img {
+        position: absolute;
+        right: 11px;
+        top: 13px;
+      }
+      @include phone {
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+    span.open {
+      font-weight: 600;
+      color: $main;
+    }
+    ul {
+      display: none;
+      background: #ffffff;
+      box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.04);
+      padding: 10px 14px 9px 28px;
+      max-width: 649px;
+      min-width: 649px;
+      min-height: 115px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 36px;
+      z-index: 2;
+      font-size: 12px;
+      line-height: 20px;
+      a {
+        color: inherit;
+      }
+      table {
+        th {
+          padding: 0 6px;
+        }
+        td {
+          text-align: center;
+          padding: 0 6px;
+        }
+      }
+      @include phone {
+        min-width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+      }
+    }
+    @include phone {
+      width: 100%;
+      margin-bottom: 23px;
+      position: relative;
+      table {
+        overflow: scroll;
+        display: block;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.product-info {
+  max-width: 450px;
+  width: 100%;
+  &__title {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 120%;
+    margin-bottom: 14px;
+    @include phone {
+      font-size: 18px;
+      line-height: 33px;
+      margin-bottom: 6px;
+    }
+  }
+  &-wrapper {
+    @include phone {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 17px;
+    }
+  }
+  &__articul {
+    display: flex;
+    font-size: 14px;
+    line-height: 17px;
+    color: #828282;
+    margin-bottom: 12px;
+    @include phone {
+      font-size: 9px;
+      line-height: 11px;
+      margin-bottom: 0;
+    }
+  }
+  &__desc {
+    font-size: 24px;
+    line-height: 29px;
+    margin-bottom: 20px;
+    @include phone {
+      font-size: 14px;
+      line-height: 22px;
+      margin-bottom: 3px;
+    }
+  }
+  &__price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    margin-bottom: 17px;
+    span {
+      color: $main;
+    }
+    @include phone {
+      font-size: 14px;
+      line-height: 22px;
+      margin-bottom: 10px;
+    }
+  }
+  &__value {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 23px;
+    span {
+      font-size: 14px;
+      line-height: 17px;
+      display: block;
+      margin-left: 5px;
+    }
+    .qty-selector {
+      display: flex;
+      align-items: center;
+    }
+    input {
+      @include font();
+      background: none;
+      border: 0;
+      outline: 0;
+      font-size: 14px;
+      width: 35px;
+      text-align: center;
+      &::placeholder {
+        color: #121110;
+      }
+    }
+    img {
+      width: 19px;
+      height: 21px;
+      cursor: pointer;
+    }
+    @include phone {
+      span {
+        font-size: 12px;
+        line-height: 26px;
+      }
+      input {
+        font-size: 12px;
+        width: 30px;
+        &::placeholder {
+          font-size: 12px;
+        }
+      }
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  &__deliv {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: right;
+    flex-grow: .5;
+    p {
+      font-size: 13px;
+      line-height: 15px;
+      margin-right: 5px;
+    }
+    span {
+      cursor: pointer;
+      svg {
+        vertical-align: middle;
+      }
+    }
+    @include phone {
+      display: flex;
+      justify-content: flex-end;
+      flex-grow: 1;
+      font-size: 10px;
+      line-height: 26px;
+      svg {
+        width: 10px;
+        height: 10px;
+        margin-left: 7px;
+      }
+    }
+  }
+  .add-to-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent;
+    width: 100%;
+    max-width: 242px;
+    height: 49px;
+    border-radius: 242px;
+    background-color: $main;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    padding: 0;
+    color: white;
+    transition: background-color 0.2s ease-in-out;
+    &:hover {
+      transition: background-color 0.2s ease-in-out;
+      border: 2px solid $main;
+      background: none;
+      color: $main;
+    }
+    @include ipad {
+      margin-bottom: 30px;
+    }
+    @include phone {
+      margin-bottom: 19px;
+      font-size: 18px;
+      line-height: 22px;
+      height: 36px;
+      max-width: 100%;
+      border-radius: 381px;
+    }
+  }
+  .add-to-cart.added {
+    background: #2BB939;
+    border: 1px solid #2BB939;
+    position: relative;
+    font-size: 0;
+    &::before {
+      top: 15px;
+      @include phone {
+        top: 7.3px;
+      }
+    }
+  }
+}
+
+.additional {
+  &-header {
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    @include phone {
+      margin-bottom: 25px;
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+  &-products {
+    display: grid;
+    grid-template-columns: 263px 263px 263px 263px;
+    gap: 30px;
+    @include ipad {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 30px;
+      justify-items: center;
+    }
+    @include tablet {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @include phone {
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+  }
+}
+
+#showMoreText {
+  background: none;
+  outline: 0;
+  border: 0;
+  margin-left: 5px;
+}
+.product-desktop {
+  display: block;
+  @include phone {
+    display: none !important;
+  }
+}
+.product-mobile {
+  display: none;
+  @include phone {
+    display: flex;
+    margin: 0;
+    .qty-selector {
+      margin-left: 10px;
+    }
+  }
+}
+
+.product-page__mobile-arrow {
+  svg {
+    transition: all 0.2s ease-in-out;
+  }
+}
+.product-page__mobile-arrow.toggle {
+  svg {
+    transition: all 0.2s ease-in-out;
+    transform: rotate(180deg);
+  }
+}
+
+.attribute-select {
+  display: block;
+  min-width: 255px;
+  border-radius: 15px;
+  border: 2px solid $main;
+  background: #fff;
+  background-color: #fff;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 9px 29px 8px 14px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-appearance: none;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    color: $main;
+    font-weight: 600;
+    option {
+      color: $black;
+    }
+  }
+  @include phone {
+    min-width: 100%;
+  }
+}
+.attribute {
+  position: relative;
+  max-width: 255px;
+  margin-bottom: 17px;
+  .select-arrow {
+    position: absolute;
+    right: 20px;
+    top: 25px;
+  }
+  .line-label {
+    font-size: 11px;
+    margin-bottom: 5px;
+    display: block;
+    padding-left: 10px;
+  }
+  @include phone {
+    max-width: 100%;
+    margin: 17px 0;
+  }
+  }
+
+.product-pip__definition-list-item-container {
+  display: flex;
+  dd {
+    margin-left: 10px;
+  }
+}
+
+.button.add-to-cart.loading {
+  font-size: 0;
+  background-color: #2BB939;
+  border: 1px solid #2BB939;
+  &::before {
+    content: none;
+  }
+}

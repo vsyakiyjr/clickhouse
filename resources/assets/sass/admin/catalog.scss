@@ -1,0 +1,23 @@
+@media all and (max-width: 414px) {
+	.catalog-page {
+		.top_catalog {
+			.charge-range {
+				& > .v-input {
+					flex-flow: column;
+					min-width: 50px;
+
+					&:first-child {
+						margin-right: 20px;
+					}
+				}
+				& > .spacer {
+					display: none;
+				}
+			}
+		}
+
+		.parser-buttons {
+			flex-flow: column;
+		}
+	}
+}

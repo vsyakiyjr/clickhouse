@@ -1,0 +1,203 @@
+.cart-widget {
+	background: #FFFFFF;
+	border: 1px solid $light-grey;
+	box-sizing: border-box;
+	border-radius: 5px;
+	width: 320px;
+
+	$paddingX: 8px;
+	$paddingY: 15px;
+
+	padding: $paddingY $paddingX;
+
+	position: relative;
+
+	.commission-ark,
+	.commission {
+		position: absolute;
+		left: calc(50% - 50px); // half of width
+		top: -50px;
+		border-radius: 50%;
+		z-index: 2;
+		width: 100px;
+		height: 50px;
+		text-align: center;
+		text-transform: uppercase;
+		padding: 23px;
+		color: $text-grey;
+	}
+
+	.cart-items {
+		overflow-y: scroll;
+		max-height: 300px;
+		margin-top: 30px;
+		padding-right: 20px;
+		margin-right: -9px;
+	}
+
+	.commission-ark {
+		border-radius: 50px 50px 0 0;
+		background: #fff;
+		border: 1px solid #e6e6e6;
+		border-bottom: none;
+		top: -49px; // перекрыть бордер от тела корзины
+	}
+
+	.commission {
+		width: auto;
+		left: calc(50% - 70px); // заголовок косячит верхний блок, и его надо смещать ещё левее
+
+		&.empty-cart {
+
+			.fa {
+				font-size: 33px;
+			}
+
+			.text {
+				font-size: 18px;
+				position: relative;
+			}
+		}
+
+		.commission-amount {
+			font-weight: bold;
+			font-size: 24px;
+		}
+
+		.commission-text {
+			font-size: 14px;
+		}
+
+		.info-link {
+			position: relative;
+			top: -0.5em;
+			font-size: 0.85em;
+		}
+	}
+
+	.cart-button {
+		color: $dark-grey;
+		cursor: pointer;
+
+		&:hover{
+			color: darken($dark-grey, 10%);
+		}
+	}
+
+	.empty-cart-text {
+		font-size: 14px;
+		line-height: 19px;
+		text-align: center;
+		color: $dark-grey;
+		margin: 60px 15px;
+	}
+
+	.clear-cart {
+		position: absolute;
+		right: $paddingX;
+		top: $paddingY;
+		text-decoration: underline;
+		text-transform: uppercase;
+
+	}
+
+	.cart-item {
+		display: flex;
+		padding: 7px 0;
+		flex-flow: row;
+		align-items: center;
+		position: relative;
+
+		img {
+			width: 75px;
+		}
+
+		img,
+		.price {
+			flex: 1
+		}
+
+		.middle-part {
+			flex: 2;
+
+			margin: 0 5px;
+
+			.title {
+				color: $body-black;
+				font-size: 12px;
+				font-weight: 600;
+				margin-bottom: 5px;
+			}
+
+			.description {
+				color: $text-grey;
+			}
+
+			.qty-button {
+				font-size: 14px;
+			}
+			.qty {
+				color: $body-black;
+				display: inline-block;
+				margin: 0 10px;
+			}
+
+			.price-row {
+				display: flex;
+				justify-content: space-between;
+				margin: 5px 0;
+
+				> .price-without-commission {
+					text-align: left;
+				}
+			}
+
+			.total-price-order {
+				font-size: 12px;
+				color: $text-grey;
+			}
+		}
+
+		.price {
+			color: $body-black;
+			font-weight: 500;
+			text-align: right;
+			font-size: 14px;
+		}
+
+		border-bottom: 1px solid $light-grey;
+
+		.remove-item {
+			position: absolute;
+			top: 0;
+			right: 0;
+			font-size: 20px;
+			opacity: 0;
+			transition: 0.3s ease all;
+		}
+
+		&:hover {
+			.remove-item {
+				opacity: 1;
+			}
+		}
+	}
+
+	.total-price {
+		font-weight: 600;
+		font-size: 14px;
+		color: $body-black;
+		text-align: right;
+
+		margin: 20px 0;
+	}
+
+	.order-button {
+		font-size: 14px;
+		padding: 6px 40px;
+		border-radius: 20px;
+		text-transform: uppercase;
+
+	}
+
+}

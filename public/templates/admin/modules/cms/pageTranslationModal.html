@@ -1,0 +1,71 @@
+<div class="modal-header">
+	<modal-close ng-if="config.showTitleClose"></modal-close>
+	<h3 class="modal-title">
+		<span ng-class="config.titleIcon"></span>
+		<span ng-bind="title"></span>
+	</h3>
+</div>
+<div class="modal-body">
+
+	<form class="cms-page-translation-modal-form form-horizontal" name="cmsTranslationModalForm" novalidate>
+
+		<div class="form-group" ng-class="{'has-error': cmsTranslationModalForm.title.$invalid}">
+			<label class="control-label" for="translationTitle">Title</label>
+			<input type="text"
+				   name="title"
+				   ng-model="data.translation.title"
+				   required=""
+				   class="form-control"
+				   id="translationTitle"
+			/>
+		</div>
+		<div class="form-group" ng-class="{'has-error': cmsTranslationModalForm.breadcrumbs_title.$invalid}">
+			<label class="control-label" for="translationBreadcrumbs">Название для хлебных крошек</label>
+			<input type="text"
+				   name="breadcrumbs_title"
+				   ng-model="data.translation.breadcrumbs_title"
+				   class="form-control"
+				   id="translationBreadcrumbs"
+			/>
+		</div>
+		<div class="form-group" ng-class="{'has-error': cmsTranslationModalForm.description.$invalid}">
+			<label class="control-label" for="translationDescription">Description</label>
+			<input type="text"
+				   name="description"
+				   ng-model="data.translation.description"
+				   required
+				   class="form-control"
+				   id="translationDescription"
+			/>
+		</div>
+		<div class="form-group" ng-class="{'has-error': cmsTranslationModalForm.keywords.$invalid}">
+			<label class="control-label" for="translationKeywords">Keywords</label>
+			<input type="text"
+				   name="keywords"
+				   ng-model="data.translation.keywords"
+				   class="form-control"
+				   id="translationKeywords"
+			/>
+		</div>
+		<div class="form-group" ng-class="{'has-error': cmsTranslationModalForm.text_preview.$invalid}">
+			<label class="control-label" for="translationTextPreview">Краткий текст</label>
+			<textarea name="text_preview"
+					  ng-model="data.translation.text_preview"
+					  class="form-control"
+					  id="translationTextPreview"
+			></textarea>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label" >Контент</label>
+
+			<page-content content="data.translation.content"></page-content>
+		</div>
+
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-success" ng-click="buttonClick('save')" ng-disabled="cmsTranslationModalForm.$invalid">Сохранить</button>
+	<button type="button" class="btn btn-danger"  ng-click="cancel()">Отмена</button>
+</div>
